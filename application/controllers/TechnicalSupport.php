@@ -234,12 +234,12 @@ class TechnicalSupport extends CI_Controller {
 					$bobotQ[$term[$x]]=$tf*$idf; // perhitungan bobot pada setiap term
 
 					//rumus cosin penyebut query
-					$bobotKuadratQuery=$bobotKuadratQuery + pow($bobotQ[$term[$x]], 2);
+					$bobotKuadratQuery=$bobotKuadratQuery + pow($bobotQ[$term[$x]], 2); //dikuadrat 2
 
 
-					$bobotQuery[$x]= array( $term[$x]=>$bobotQ[$term[$x]], );
+					$bobotQuery[$x]= array( $term[$x]=>$bobotQ[$term[$x]], ); // untuk mengetahui nilai bobot pada setiap term, digunakan saat menghitung cosine
 
-					$termTerseleksi[$x]=$term[$x];
+					$termTerseleksi[$x]=$term[$x]; //$termTerseleksi = menyimpan term yang tidak nol
 					$x++;
 					//$x2++;
 					
@@ -247,7 +247,7 @@ class TechnicalSupport extends CI_Controller {
 			
 			}
 
-			//menccari id dokumen
+			//mencari id dokumen
 			$id=$this->ModelTechnicalSupport->select_id();
 			$y=0;
 			
