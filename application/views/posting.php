@@ -31,7 +31,7 @@
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="<?php echo base_url('Pengaduan/index') ?>">PENGADUAN ONLINE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <h1 class="my-4">Daftar Pengaduan</h1>
+          <h1 class="my-4">History Pengaduan</h1>
           <?php foreach ($posting as $key => $post): ?>
             <!-- Blog Post -->
             <div class="card mb-4">              
@@ -75,6 +75,7 @@
                 <h5 class="card-title"><?php echo $post->instansi;?></h5>
                 <h6 class="card-title"><?php echo $post->kategori;?></h6>
                 <h6 class="card-title"><?php echo $post->namaKerusakan;?></h6>
+                <h6 class="card-title"><?php echo $post->comment;?></h6>
 
                 <?php 
                   if($post->status=='belum diproses'){?>

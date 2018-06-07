@@ -344,39 +344,39 @@ class TechnicalSupport extends CI_Controller {
 	}
 
 
-	public function listQuery()
-	{
-		$this->db->select('k.*, kt.nama ')->from('kerusakan k')
-			->join('kategori kt', 'k.idKategori = kt.id');
-			/*->order_by('id','desc')*/
+	// public function listQuery()
+	// {
+	// 	$this->db->select('k.*, kt.nama ')->from('kerusakan k')
+	// 		->join('kategori kt', 'k.idKategori = kt.id');
+	// 		/*->order_by('id','desc')*/
 			
-			$get_posting = $this->db->get();
-			$data['listQuery'] = $get_posting->result();
+	// 		$get_posting = $this->db->get();
+	// 		$data['listQuery'] = $get_posting->result();
 
-		$this->load->view('technicalSupportListQuery',$data);
-	}
-	public function tambahQuery()
-	{
-		$get_kategori = $this->db->select('*')->from('kategori')->get();
-			     $data['kategori'] = $get_kategori->result();
+	// 	$this->load->view('technicalSupportListQuery',$data);
+	// }
+	// public function tambahQuery()
+	// {
+	// 	$get_kategori = $this->db->select('*')->from('kategori')->get();
+	// 		     $data['kategori'] = $get_kategori->result();
 
-		$this->load->view('technicalSupportTambahQuery',$data);
+	// 	$this->load->view('technicalSupportTambahQuery',$data);
 
-	}
+	// }
 
-	public function submitQuery()
-	{
-		if(isset($_POST['submit']))
-		{
-			$data=$this->input->post();
-			$this->db->set('idKategori', $this->input->post('idKategori'));
-			$this->db->set('namaKerusakan', $this->input->post('query'));
-			$this->db->insert('kerusakan');
+	// public function submitQuery()
+	// {
+	// 	if(isset($_POST['submit']))
+	// 	{
+	// 		$data=$this->input->post();
+	// 		$this->db->set('idKategori', $this->input->post('idKategori'));
+	// 		$this->db->set('namaKerusakan', $this->input->post('query'));
+	// 		$this->db->insert('kerusakan');
 
 			
-			redirect('TechnicalSupport/listQuery');
-		}
-	}
+	// 		redirect('TechnicalSupport/listQuery');
+	// 	}
+	// }
 
 
 

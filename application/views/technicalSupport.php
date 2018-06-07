@@ -152,7 +152,7 @@
           </br>        
           <div class="row">
             <div class="col-md-12">
-                <a href="<?php echo base_url('TechnicalSupport/tambahSolusi/') ?>" type="button" class="btn btn-primary">Tambah Solusi</a>
+                <!-- <a href="<?php echo base_url('TechnicalSupport/tambahSolusi/') ?>" type="button" class="btn btn-primary">Tambah Solusi</a> -->
             </div>
           </br></br><br>
           <!-- /.box-header -->
