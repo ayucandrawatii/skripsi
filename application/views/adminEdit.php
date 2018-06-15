@@ -49,7 +49,9 @@
 
       <form id="submitpengaduan" method="post" action="<?= base_url('AdminEdit/update/').$posting->id ?>" class="form-horizontal" style="color:white;">
         <div class="form-group">
-          <label class="control-label col-sm-2" for="instansi">Instansi:</label>
+          <div class="col-sm-12">
+            <label class="control-label" for="instansi" style="color:black; font-family:calibri ;">Instansi:</label>
+          </div>
           <div class="col-sm-12">
             <select name="idInstansi" class="form-control" id="instansi">
                 <option>- Select Dinas -</option>
@@ -65,7 +67,9 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2">Kategori:</label>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
+          </div>
           <div class="col-sm-12">
             <select name="idKategori" class="form-control" id="kategori" onChange="cariKerusakan()">
                 <option>- Select Kategori -</option>
@@ -80,30 +84,36 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2">Kerusakan:</label>
-              <div class="col-sm-12">
-                <select name="idKerusakan" class="form-control" id="kerusakan">
-                    <option>- Select Kerusakan -</option>
-                    <?php 
-                      foreach($kerusakan as $kat)
-                      {
-                        $selected = ($kat->id == $posting->idKerusakan) ? 'selected' : '';
-                        echo '<option value="'.$kat->id.'" '.$selected.'>'.$kat->namaKerusakan.'</option>';
-                      }
-                    ?>
-                </select>
-              </div>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
+          </div>
+          <div class="col-sm-12">
+            <select name="idKerusakan" class="form-control" id="kerusakan">
+              <option>- Select Kerusakan -</option>
+                <?php 
+                  foreach($kerusakan as $kat)
+                  {
+                    $selected = ($kat->id == $posting->idKerusakan) ? 'selected' : '';
+                      echo '<option value="'.$kat->id.'" '.$selected.'>'.$kat->namaKerusakan.'</option>';
+                  }
+                ?>
+            </select>
+          </div>
         </div>
 
-        <!-- <div class="form-group">
-          <label class="control-label col-sm-2" style="color:black;">Comment:</label>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Comment:</label>
+          </div>
           <div class="col-sm-12">
             <textarea class="form-control" name="comment" rows="10" cols"30" placeholder="Enter comment"><?= $posting->comment ?></textarea>
           </div>
-        </div> -->
+        </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2">Status:</label>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Status:</label>
+          </div>
           <div class="col-sm-12">
             <select name="status" class="form-control" id="status">
                 <option>- Select Status -</option>
@@ -116,7 +126,9 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2">Nomor Surat:</label>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Nomor Surat:</label>
+          </div>
           <div class="col-sm-12">
             <input type="text" class="form-control" required name="nomorSurat" value="<?= $posting->nomorSurat ?>" placeholder="Enter nomor surat">
           </div>

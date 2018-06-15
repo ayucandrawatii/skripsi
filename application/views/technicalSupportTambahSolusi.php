@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>Technical Support</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -48,24 +48,22 @@
       <!-- form start -->
 
       <form id="submitpengaduan" method="post" action="<?= base_url('TechnicalSupport/submit/')?>" class="form-horizontal" style="color:white;">
-        <div class="form-group">
-          
-
-          
+        <div class="form-group"></br>
+                    
           <div class="col-sm-12">
-            <label class="control-label">Gejala:</label>
-            <textarea class="form-control" name="gejala" rows="4" cols"30" placeholder="Enter Gejala"></textarea>
+            <label class="control-label" style="color:black; font-family:calibri ;">Gejala:</label>
+            <textarea class="form-control" name="gejala" rows="4" cols"30" placeholder="Enter Gejala"></textarea><br>
           </div>
 
           
           <div class="col-sm-12">
-            <label class="control-label">Kemungkinan Penyebab:</label>
-            <textarea class="form-control" name="penyebab" rows="4" cols"30" placeholder="Enter Kemungkinan Penyebab"></textarea>
+            <label class="control-label" style="color:black; font-family:calibri ;">Kemungkinan Penyebab:</label>
+            <textarea class="form-control" name="penyebab" rows="4" cols"30" placeholder="Enter Kemungkinan Penyebab"></textarea><br>
           </div>
 
           
           <div class="col-sm-12">
-            <label class="control-label">Solusi:</label>
+            <label class="control-label" style="color:black; font-family:calibri ;">Solusi:</label>
             <textarea class="form-control" name="solusi" rows="10" cols"30" placeholder="Enter Solusi"></textarea>
           </div>
      
@@ -73,7 +71,7 @@
         </div>
         
           <div class="box-footer">
-            <a href="<?php echo base_url('technicalSupport') ?>" type="button" class="btn btn-default">Cancel</a>
+            <a href="<?php echo base_url('TechnicalSupport/listSolusi') ?>" type="button" class="btn btn-default">Cancel</a>
             <input type="submit" value="submit" name="submit" class="btn btn-info">
           </div>        
       </form>   

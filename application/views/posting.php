@@ -83,7 +83,7 @@
                   }
 
                   else{?>
-                    <span class="btn btn-primary btn-sm"><?php echo $post->status;?></span><?php
+                    <span class="btn btn-success btn-sm"><?php echo $post->status;?></span><?php
                   }?>
                 
                 

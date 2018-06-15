@@ -48,60 +48,32 @@
       <!-- form start -->
 
       <form id="submitpengaduan" method="post" action="<?= base_url('AdminNambahUser/submit/')?>" class="form-horizontal" style="color:white;">
-                <div class="form-group">
-                  <label class="control-label col-sm-2" style="color:black;">Nama User:</label>
+                <div class="form-group"></br>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="username">
+                    <label class="control-label" style="color:black; font-family:calibri ;">Nama User:</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" name="username"></br>
                   </div>
 
-                  <label class="control-label col-sm-2" style="color:black;">Password:</label>
+                  <div class="col-sm-12">
+                    <label class="control-label" style="color:black; font-family:calibri ;">Password:</label>
+                  </div>
                   <div class="col-sm-12">
                     <input type="text" class="form-control" name="password">
                   </div>
 
                 </div>             
 
-                <div class="form-group"> 
+                
                   <div class="box-footer">
                     <a href="<?php echo base_url('AdminNambahUser') ?>" type="button" class="btn btn-default">Cancel</a>
                     <input type="submit" value="submit" name="submit" class="btn btn-info">
                   </div>
-                </div>
+                
       </form>
 
-      <!-- <form class="form-horizontal">
-        <div class="box-body">
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Instansi</label>
-
-            <div class="col-sm-10">
-              <input type="email" class="form-control" placeholder="Nama Instansi">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Kategori</label>
-
-            <div class="col-sm-10">
-              <input type="email" class="form-control" placeholder="Kateogori">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Status</label>
-
-            <div class="col-sm-10">
-              <input type="email" class="form-control" placeholder="Status">
-            </div>
-          </div>
-          
-        <!-- /.box-body -->
-        <!-- <div class="box-footer">
-          <button type="submit" class="btn btn-default">Cancel</button>
-          <button type="submit" class="btn btn-info pull-right">Edit</button>
-        </div> -->
-        <!-- /.box-footer -->
-      <!-- </form> -->
+      
     </div>
   </div>
 

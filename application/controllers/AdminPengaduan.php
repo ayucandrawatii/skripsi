@@ -17,10 +17,10 @@ class AdminPengaduan extends CI_Controller {
 	public function pengaduan()
 	{
 		if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
-		$search = $data['search'] = $this->input->post('search');
+		$search = $data['search'] = $this->input->get('search');
 		if ($this->input->post()) {
-			$tahun = $this->input->post('tahun');
-			$bulan = $this->input->post('bulan');
+			$tahun = $this->input->get('tahun');
+			$bulan = $this->input->get('bulan');
 		} else {
 			$tahun = 0;
 			$bulan = 0;
@@ -149,6 +149,6 @@ class AdminPengaduan extends CI_Controller {
 
 	  	$this->load->view('isiKategori',$data);
 	}
-	
+
 	
 }

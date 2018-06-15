@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tecchnical Support</title>
+  <title>Technical Support</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -48,8 +48,10 @@
       <!-- form start -->
 
       <form id="submitpengaduan" method="post" action="<?= base_url('TechnicalSupport/update/')?>" class="form-horizontal" style="color:white;">
-        <div class="form-group">
-          <label class="control-label col-sm-2">Kategori:</label>
+        <div class="form-group"></br>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
+          </div></br>
           <div class="col-sm-12">
             <select name="kategori" class="form-control">
                 <option>- Select Kategori -</option>
@@ -60,10 +62,12 @@
                     echo '<option value="'.$kat->id.'" '.$selected.'>'.$kat->nama.'</option>';
                   }
                 ?>
-              </select>
+              </select></br>
           </div>
 
-          <label class="control-label col-sm-2">Kerusakan:</label>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
+          </div>
           <div class="col-sm-12">
             <textarea class="form-control" name="kerusakan" rows="10" cols"30"><?= $posting->namaKerusakan ?></textarea>
           </div>

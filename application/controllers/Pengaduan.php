@@ -16,8 +16,6 @@ class pengaduan extends CI_Controller {
 		$get_kerusakan = $this->db->select('*')->from('kerusakan')->get();
 				$data['kerusakan'] = $get_kerusakan->result();
 
-		
-
 		$this->load->view('pengaduan', $data);
 	}
 

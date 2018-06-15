@@ -85,7 +85,7 @@
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
           <a href="<?php echo base_url('adminPengaduan/pengaduan') ?>">
@@ -98,16 +98,20 @@
           </a>          
         </li>
         <li>
+          <a href="<?php echo base_url('adminNambahInstansi/') ?>">
+            <i class="fa fa-university"></i> <span>Daftar instansi</span>       
+          </a>          
+        </li>
+        <li>
           <a href="<?php echo base_url('adminPengaduan/profile') ?>">
-            <i class="fa fa-users"></i> <span>Profile</span>       
+            <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          
         </li>
         <li>
           <a href="<?php echo base_url('AdminPengaduan/signOut') ?>">
-            <i class="fa fa-users"></i> <span>Sign Out</span>       
+            <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
-        
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -131,37 +135,28 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <!-- /.box-header -->
-          
-            
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" action="<?php echo base_url('adminPengaduan/adminProfileEdit/') ?>" method="post" enctype="multipart/form-data">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nama</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik email" name="email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">Foto</label>
-                  <div class="profile-picture" style="background:url('<?php echo base_url().$this->session->userdata('foto')?>')"></div> </br>
-                  <input type="file" id="exampleInputFile" name="foto">
-
-                  
-                </div>
-                
+          <!-- form start -->
+          <form role="form" action="<?php echo base_url('adminPengaduan/adminProfileEdit/') ?>" method="post" enctype="multipart/form-data">
+            <div class="box-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Nama</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
               </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik email" name="email">
               </div>
-            </form>
-          
+              <div class="form-group">
+                <label for="exampleInputFile">Foto</label>
+                <div class="profile-picture" style="background:url('<?php echo base_url().$this->session->userdata('foto')?>')"></div> </br>
+                <input type="file" id="exampleInputFile" name="foto">
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
       <!-- /.box -->

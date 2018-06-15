@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Pengaduan</title>
+  <title>Technical Support
+  </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -27,6 +28,24 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -38,7 +57,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Hi, Admin</b></span>
+      <span class="logo-lg"><b>Hi, T.Support</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -55,10 +74,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url()?>assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin Pengaduan</p>
+          <p>Technical Support</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -67,27 +86,28 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url('adminPengaduan/pengaduan') ?>">
-            <i class="fa fa-history"></i> <span>Pengaduan</span>       
+          <a href="<?php echo base_url('TechnicalSupport/') ?>">
+            <i class="fa fa-history"></i> <span>List Pengaduan</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('adminNambahUser/') ?>">
-            <i class="fa fa-users"></i> <span>Daftar user</span>       
+          <a href="<?php echo base_url('TechnicalSupport/daftarKerusakan') ?>">
+            <i class="fa fa-cog"></i> <span>Daftar kerusakan</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('adminNambahInstansi/') ?>">
-            <i class="fa fa-university"></i> <span>Daftar instansi</span>       
+          <a href="<?php echo base_url('TechnicalSupport/listSolusi') ?>">
+            <i class="fa fa-wrench"></i> <span>List solusi</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('adminPengaduan/profile') ?>">
+        <li>
+          <a href="<?php echo base_url('TechnicalSupport/profile') ?>">
             <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('AdminPengaduan/signOut') ?>">
+          <a href="<?php echo base_url('TechnicalSupport/signOut') ?>">
             <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
@@ -103,65 +123,44 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        List User
-        
-      </h1>      
+        Profile Technical Support
+      </h1>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          </br>
-          <div class="">
-            <a href="<?php echo base_url('adminNambahUser/add/') ?>" type="button" class="btn btn-primary">Tambah User</a>
-          </div>
-          </br>
-          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" action="<?php echo base_url('TechnicalSupport/technicalSupportProfileEdit/') ?>" method="post" enctype="multipart/form-data">
             <div class="box-body">
-              <table class="table table-bordered">
-                
-                <tr>
-                  <th style="width: 10px">NO</th>
-                  <th style="width: 500px">Nama User</th>
-                  <th>Action</th>
-                </tr>
-                <?php foreach ($user as $key => $post): ?>
-                <tr>
-                  <td><?php echo $key+1;?></td>
-                  <td><?php echo $post->username;?></td>                 
-                  <td>
-                    <div class="btn-group" style="align:center";>
-                      <a href="<?php echo base_url('AdminNambahUser/edit/').$post->id_user ?>" type="button" class="btn btn-default">Edit</a>
-                      <a href="<?php echo base_url('AdminNambahUser/delete/').$post->id_user ?>" type="button" class="btn btn-default">Hapus</a>
-                    </div>
-                  </td>
-                </tr>
-                <?php endforeach ?>
-                
-              </table>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Nama</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik email" name="email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Foto</label>
+                <div class="profile-picture" style="background:url('<?php echo base_url().$this->session->userdata('foto')?>')"></div> </br>
+                <input type="file" id="exampleInputFile" name="foto">
+              </div>
             </div>
-            <!-- /.box-body -->
-            <!-- <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div> -->
-          </div>         
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>     
         </div>
-        </div>
+      </div>
       <!-- /.box -->
-
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
 
   
 
@@ -173,9 +172,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="/skripsi/assets/bower_components/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/skripsi/assets/bower_components/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<!-- ChartJS -->
+<script src="<?php echo base_url() ?>assets/bower_components/Chart.js/Chart.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url() ?>assets/css/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -190,16 +193,48 @@
   })
 </script>
 
+<script>
+  // function myFunction() {
+  //   var input, filter, table, tr, td, i;
+  //   input = document.getElementById("myInput");
+  //   filter = input.value.toUpperCase();
+  //   table = document.getElementById("myTable");
+  //   tr = table.getElementsByTagName("tr");
+  //   for (i = 0; i < tr.length; i++) {
+  //     td = tr[i].getElementsByTagName("td")[0];
+  //     if (td) {
+  //       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+  //         tr[i].style.display = "";
+  //       } else {
+  //         tr[i].style.display = "none";
+  //       }
+  //     }       
+  //   }
+  // }
+</script>
 
 <script>
-// function deleteUser() {
-//     var ask = window.confirm("Apa anda yakin menghapus user?");
-//     if (ask) {
-//         window.location.href = "<?php echo base_url() ?>AdminHapus/delete";
+  // $(function () {
+  //   //MODAL
+  //   $('#myModal').on('shown.bs.modal', function () {
+  //     $('#myInput').focus()
+  //   })
 
-//     }
-// }
+function solusi(id){
+   
+  $.ajax({
+           url:"<?= base_url() ?>TechnicalSupport/solusi/"+id+"",
+           success: function(response){
+           $("#hasilView").html(response);
+           $('#viewSolusi').modal();
+           },
+           dataType:"html"
+         });
+
+         return false;
+       }
+
+   
 </script>
 </body>
 </html>
-  

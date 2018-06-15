@@ -61,28 +61,7 @@
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <!-- <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a> -->
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url()?>assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Technical Support</span>
-            </a>
-            
-          </li>
-          
-          
-        </ul>
-      </div>
+      
     </nav>
   </header>
 
@@ -104,7 +83,7 @@
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
           <a href="<?php echo base_url('TechnicalSupport/') ?>">
@@ -113,17 +92,23 @@
         </li>
         <li>
           <a href="<?php echo base_url('TechnicalSupport/daftarKerusakan') ?>">
-            <i class="fa fa-users"></i> <span>Daftar kerusakan</span>       
+            <i class="fa fa-cog"></i> <span>Daftar kerusakan</span>       
           </a>          
         </li>
         <li>
           <a href="<?php echo base_url('TechnicalSupport/listSolusi') ?>">
-            <i class="fa fa-users"></i> <span>List solusi</span>       
+            <i class="fa fa-wrench"></i> <span>List solusi</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('TechnicalSupport/listQuery') ?>">
-            <i class="fa fa-users"></i> <span>List query</span>       
+        <li>
+          <a href="<?php echo base_url('TechnicalSupport/profile') ?>">
+            <i class="fa fa-user-circle"></i> <span>Profile</span>       
+          </a>          
+        </li>
+        <li>
+          <a href="<?php echo base_url('TechnicalSupport/signOut') ?>">
+            <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
       </ul>
@@ -154,7 +139,6 @@
             <div class="col-md-12">
                 <!-- <a href="<?php echo base_url('TechnicalSupport/tambahSolusi/') ?>" type="button" class="btn btn-primary">Tambah Solusi</a> -->
             </div>
-          </br></br><br>
           <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-bordered">
@@ -178,7 +162,7 @@
                   <td><?php echo $post->status;?></td>
                   <td>
                     <div class="btn-group">
-                      <button  onclick="solusi(<?php echo $post->id; ?>)" type="button" class="btn btn-default" >Solusi</button>
+                      <button  onclick="solusi(<?php echo $post->id; ?>)" type="button" class="btn btn-success" >Solusi</button>
                     </div>
                   </td>
                  </tr>
@@ -186,9 +170,9 @@
                 
               </table>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                 Launch demo modal
-              </button>
+              </button> -->
 
               <!-- Modal -->
               <div class="modal fade" id="viewSolusi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -196,14 +180,14 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                      <h4 class="modal-title" id="myModalLabel">Solusi</h4>
                     </div>
                     <div id="hasilView" class="modal-body">
                       ...
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      
                     </div>
                   </div>
                 </div>

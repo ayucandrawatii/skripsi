@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -42,42 +42,30 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
       <div class="box-header with-border">
-        <h1 class="box-title">Tambah Query</h1>
+        <h1 class="box-title">Edit Instansi</h1>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
 
-      <form id="submitpengaduan" method="post" action="<?= base_url('TechnicalSupport/submitQuery/')?>" class="form-horizontal" style="color:white;">
-        <div class="form-group">
+      <form id="submitpengaduan" method="post" action="<?= base_url('AdminNambahInstansi/submitEdit/').$instansi->id?>" class="form-horizontal" style="color:white;">
+                <div class="form-group"></br>
+                  <div class="col-sm-12">
+                    <label class="control-label" style="color:black;">Nama Instansi:</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" name="nama" value="<?= $instansi->nama ?>">
+                  </div>
+                </div>             
 
-          <div class="col-sm-12">
-                  <label class="control-label col-sm-2">Kategori:</label>
-                   
-                      <select name="idKategori" class="form-control" id="kategori"  >
-                          <option>- Select Kategori -</option>
-                          <?php 
-                            foreach($kategori as $kat)
-                            {
-                              echo '<option value="'.$kat->id.'">'.$kat->nama.'</option>';
-                            }
-                          ?>
-                        </select>
-          
-          </div> 
+                
+                  <div class="box-footer">
+                    <!-- <a href="<?php echo base_url('AdminNambahInstansi').$instansi->id ?>" type="button" class="btn btn-default">Cancel</a> -->
+                    <a href="<?php echo base_url('AdminNambahInstansi')?>" type="button" class="btn btn-default">Cancel</a>
+                    <input type="submit" value="submit" name="submit" class="btn btn-info">
+                  </div>
+                
+      </form>
 
-          <div class="col-sm-12">
-            <label class="control-label">Query:</label>
-            <textarea class="form-control" name="query" rows="4" cols"30" placeholder="Enter Gejala"></textarea>
-          </div>
-
-          
-        </div>
-        
-          <div class="box-footer">
-            <a href="<?php echo base_url('technicalSupport') ?>" type="button" class="btn btn-default">Cancel</a>
-            <input type="submit" value="submit" name="submit" class="btn btn-info">
-          </div>        
-      </form>   
     </div>
   </div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -42,38 +42,30 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
       <div class="box-header with-border">
-        <h1 class="box-title">Edit User</h1>
+        <h1 class="box-title">Add Instansi</h1>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
 
-      <form id="submitpengaduan" method="post" action="<?= base_url('AdminNambahUser/submitEdit/').$user->id_user?>" class="form-horizontal" style="color:white;">
+      <form id="submitpengaduan" method="post" action="<?= base_url('AdminNambahInstansi/submit/')?>" class="form-horizontal" style="color:white;">
                 <div class="form-group"></br>
                   <div class="col-sm-12">
-                    <label class="control-label" style="color:black; font-family:calibri ;">Nama User:</label>
+                    <label class="control-label" style="color:black;">Nama Instansi:</label>
                   </div>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" name="username" value="<?= $user->username ?>"></br>
-                  </div>
-
-                  <div class="col-sm-12">
-                    <label class="control-label" style="color:black; font-family:calibri ;">Password:</label>
-                  </div>
-                  <div class="col-sm-12">
-                    <input type="text" class="form-control" name="password">
-                  </div>
-
+                    <input type="text" class="form-control" name="nama">
+                  </div>                 
                 </div>             
 
-                
+                 
                   <div class="box-footer">
-                    <!-- <a href="<?php echo base_url('AdminNambahUser').$user->id_user ?>" type="button" class="btn btn-default">Cancel</a> -->
-                    <a href="<?php echo base_url('AdminNambahUser')?>" type="button" class="btn btn-default">Cancel</a>
+                    <a href="<?php echo base_url('AdminNambahInstansi') ?>" type="button" class="btn btn-default">Cancel</a>
                     <input type="submit" value="submit" name="submit" class="btn btn-info">
                   </div>
                 
       </form>
 
+      
     </div>
   </div>
 

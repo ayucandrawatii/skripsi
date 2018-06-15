@@ -48,18 +48,22 @@
       <!-- form start -->
 
       <form id="submitpengaduan" method="post" action="<?= base_url('TechnicalSupport/submitTambahKerusakan/')?>" class="form-horizontal" style="color:white;">
-        <div class="form-group">
-          <label class="control-label col-sm-2">Kategori:</label>
+        <div class="form-group"></br>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
+          </div>
           <div class="col-sm-12">
             <select name="kategori" class="form-control" id="kategori">
                 <option>- Select Kategori -</option>
                  <option value="1">hardware</option>
                  <option value="2">software</option>
                   <option value="3">jaringan</option>
-              </select>
+              </select></br>
           </div>
 
-          <label class="control-label col-sm-2">Kerusakan:</label>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
+          </div></br></br>
           <div class="col-sm-12">
             <textarea class="form-control" name="kerusakan" rows="10" cols"30" placeholder="Enter kerusakan"></textarea>
           </div>

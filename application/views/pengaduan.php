@@ -121,7 +121,7 @@
             <div class="service-box">
               <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
               <h3>Konfirmasi</h3>
-              <p class="text-muted">Status pengaduan pada halaman posting berubah menjadi sedang diproses</br>
+              <p class="text-muted">Status pengaduan pada halaman posting berubah menjadi diproses</br>
                 (3)
               </p>
             </div>

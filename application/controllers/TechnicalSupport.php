@@ -106,7 +106,60 @@ class TechnicalSupport extends CI_Controller {
 		$data['listSolusi'] = $this->db->get()->result();
 		$this->load->view('technicalSupportListSolusi',$data);
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function editSolusi($idSolusi)
+	{
+		$this->db->where('idSolusi',$idSolusi);
+		$get_posting = $this->db->get('tabelSolusi');
+		$data['posting'] = $get_posting->row();
 
+		$this->load->view('technicalSupportEditSolusi',$data);
+	}
+
+	public function updateSolusi()
+	{
+		if(isset($_POST['submit']))
+		{
+			$id= $this->input->post('idSolusi');
+			$data=$this->input->post();
+			$this->db->set('gejala', $this->input->post('gejala'));
+			$this->db->set('kemungkinanPenyebab', $this->input->post('kemungkinanPenyebab'));
+			$this->db->set('solusi', $this->input->post('solusi'));
+			$this->db->where('idSolusi', $id);
+			$this->db->update('tabelSolusi');
+
+			redirect('TechnicalSupport/listSolusi');
+		}
+
+		else{
+			redirect('TechnicalSupport/listSolusi');
+		}
+	}
+
+	// public function submitTambahSolusi()
+	// {
+	// 	if(isset($_POST['submitTambahSolusi']))
+	// 	{
+	// 		$data=$this->input->post();
+	// 		$this->db->set('idSolusi', $this->input->post('idSolusi'));
+	// 		$this->db->set('gejala', $this->input->post('gejala'));
+	// 		$this->db->set('kemungkinanPenyebab', $this->input->post('kemungkinanPenyebab'));
+	// 		$this->db->set('solusi', $this->input->post('solusi'));
+	// 		$this->db->insert('tabelsolusi');
+			
+	// 			$this->listSolusi();
+	// 	}
+	// }
+
+	public function deleteSolusi($idSolusi)
+	{
+		$this->db->where('idSolusi', $idSolusi);
+		$this->db->delete('tabelSolusi');
+
+		redirect('TechnicalSupport/listSolusi');
+	
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public function tambahSolusi()
 	{
@@ -344,39 +397,44 @@ class TechnicalSupport extends CI_Controller {
 	}
 
 
-	// public function listQuery()
-	// {
-	// 	$this->db->select('k.*, kt.nama ')->from('kerusakan k')
-	// 		->join('kategori kt', 'k.idKategori = kt.id');
-	// 		/*->order_by('id','desc')*/
-			
-	// 		$get_posting = $this->db->get();
-	// 		$data['listQuery'] = $get_posting->result();
+	public function profile()
+	{
+		// if (!$this->session->userdata('isLoggedIn')) redirect('LoginTS');
+		$this->load->view('technicalSupportProfile');
+	}
 
-	// 	$this->load->view('technicalSupportListQuery',$data);
-	// }
-	// public function tambahQuery()
-	// {
-	// 	$get_kategori = $this->db->select('*')->from('kategori')->get();
-	// 		     $data['kategori'] = $get_kategori->result();
+	public function technicalSupportProfileEdit()
+	{
+		$config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
 
-	// 	$this->load->view('technicalSupportTambahQuery',$data);
+                $this->load->library('upload', $config);
 
-	// }
+                if ( ! $this->upload->do_upload('foto'))
+                {
+                        $error = array('error' => $this->upload->display_errors());
 
-	// public function submitQuery()
-	// {
-	// 	if(isset($_POST['submit']))
-	// 	{
-	// 		$data=$this->input->post();
-	// 		$this->db->set('idKategori', $this->input->post('idKategori'));
-	// 		$this->db->set('namaKerusakan', $this->input->post('query'));
-	// 		$this->db->insert('kerusakan');
+                        $this->load->view('upload_form', $error);
+                }
+                else
+                {
+                        $data = $this->upload->data();
 
-			
-	// 		redirect('TechnicalSupport/listQuery');
-	// 	}
-	// }
+                        $data = array(
+				        'username' => $this->input->post('nama'),
+				        'email'  => $this->input->post('email'),
+				        'foto'  => "uploads/".$data['file_name']
+						);
+
+						$this->db->update('tb_technical_support', $data);
+                }
+        $this->load->library('session');
+        $this->session->set_userdata($data);       
+        redirect('TechnicalSupport/profile');
+	}
 
 
 

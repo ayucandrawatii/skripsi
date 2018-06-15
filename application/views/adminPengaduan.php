@@ -91,7 +91,7 @@
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
           <a href="<?php echo base_url('adminPengaduan/pengaduan') ?>">
@@ -104,13 +104,18 @@
           </a>          
         </li>
         <li>
+          <a href="<?php echo base_url('adminNambahInstansi/') ?>">
+            <i class="fa fa-university"></i> <span>Daftar instansi</span>       
+          </a>          
+        </li>
+        <li>
           <a href="<?php echo base_url('adminPengaduan/profile') ?>">
-            <i class="fa fa-users"></i> <span>Profile</span>       
+            <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          
         </li>
         <li>
           <a href="<?php echo base_url('AdminPengaduan/signOut') ?>">
-            <i class="fa fa-users"></i> <span>Sign Out</span>       
+            <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
       </ul>
@@ -223,8 +228,9 @@
                   <th style="width: 200px">Instansi</th>
                   <th style="width: 100px">Kategori</th>
                   <th style="width: 150px">Kerusakan</th>
+                  <th style="width: 150px">Comment</th>
                   <th style="width: 150px">Status</th>
-                  <th style="width: 200px">Action</th>
+                  <th style="width: 220px">Action</th>
                 </tr>
                 <?php foreach ($posting as $key => $post): ?>
                 <tr>
@@ -233,12 +239,17 @@
                   <td><?php echo $post->instansi;?></td>
                   <td><?php echo $post->kategori;?></td>
                   <td><?php echo $post->kerusakan;?></td>
+                  <td><?php echo $post->comment;?></td>
                   <td><?php echo $post->status;?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo base_url('AdminEdit/edit/').$post->id ?>" type="button" class="btn btn-default">Edit</a>
-                      <a href="<?php echo base_url('AdminHapus/delete/').$post->id ?>" type="button" class="btn btn-default" onclick="deletePengaduan()">Hapus</a>
-                      <a href="<?php echo base_url('KirimEmail/index/').$post->id ?>" type="button" class="btn btn-default">Kirim</a>
+                      <a href="<?php echo base_url('AdminEdit/edit/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
+                    </div>
+                    <div class="btn-group">
+                      <a href="#" type="button" class="btn btn-danger" onclick="deletePengaduan()">Hapus</a>
+                    </div>
+                    <div class="btn-group">
+                      <a href="<?php echo base_url('KirimEmail/index/').$post->id ?>" type="button" class="btn btn-info">Kirim</a>
                     </div>
                   </td>
                  </tr>
@@ -402,7 +413,7 @@
 
 <script>
 function deletePengaduan() {
-    var ask = window.confirm("Are you sure you want to delete this post?");
+    var ask = window.confirm("Apa anda yakin menghapus pengaduan?");
     if (ask) {
         window.location.href = "<?php echo base_url() ?>AdminHapus/delete";
 

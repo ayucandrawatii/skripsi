@@ -91,26 +91,21 @@
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url('adminPengaduan/pengaduan') ?>">
+          <a href="<?php echo base_url('KepalaDinas/index') ?>">
             <i class="fa fa-history"></i> <span>Pengaduan</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('adminNambahUser/') ?>">
-            <i class="fa fa-users"></i> <span>Daftar user</span>       
-          </a>          
-        </li>
-        <li>
-          <a href="<?php echo base_url('adminPengaduan/profile') ?>">
-            <i class="fa fa-users"></i> <span>Profile</span>       
+          <a href="<?php echo base_url('KepalaDinas/profile') ?>">
+            <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          
         </li>
         <li>
           <a href="<?php echo base_url('loginAdmin/index') ?>">
-            <i class="fa fa-users"></i> <span>Sign Out</span>       
+            <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
       </ul>
@@ -207,24 +202,23 @@
             </div>
 
             <!-- SEARCH -->
-            <div class="col-md-12 text-right">
+            <!-- <div class="col-md-12 text-right">
               <form action="<?php echo base_url('KepalaDinas/pengaduan/') ?>" method="get">
                 <label>Search</label>
                 <input style="width:330px;" name="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="Ketik nomor surat atau nama instansi.." title="" value="<?= $search ?>">
               </form>
-            </div>
+            </div> -->
 
             <div class="box-body">
               <table class="table table-bordered">
                 
                 <tr>
                   <th style="width: 10px">NO</th>
-                  <th style="width: 100px">No Surat</th>
+                  <th style="width: 150px">No Surat</th>
                   <th style="width: 200px">Instansi</th>
                   <th style="width: 100px">Kategori</th>
-                  <th style="width: 150px">Kerusakan</th>
-                  <th style="width: 150px">Status</th>
-                  <th style="width: 200px">Action</th>
+                  <th style="width: 200px">Kerusakan</th>
+                  <th style="width: 200px">Status</th>
                 </tr>
                 <?php foreach ($posting as $key => $post): ?>
                 <tr>
@@ -234,7 +228,7 @@
                   <td><?php echo $post->kategori;?></td>
                   <td><?php echo $post->kerusakan;?></td>
                   <td><?php echo $post->status;?></td>
-                  <td>
+                  
                     <div class="btn-group">
                       <!-- <a href="<?php echo base_url('AdminEdit/edit/').$post->id ?>" type="button" class="btn btn-default">Edit</a>
                       <a href="<?php echo base_url('AdminHapus/delete/').$post->id ?>" type="button" class="btn btn-default" onclick="deletePengaduan()">Hapus</a>

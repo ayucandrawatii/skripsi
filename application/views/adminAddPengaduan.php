@@ -48,42 +48,57 @@
       <!-- form start -->
 
       <form id="submitpengaduan" method="post" action="<?= base_url('AdminPengaduan/submit/')?>" class="form-horizontal" style="color:white;">
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="instansi">Instansi:</label>
+        <div class="form-group"></br>
+          <div class="col-sm-12">
+            <label class="control-label" for="instansi" style="color:black; font-family:calibri ;">Instansi:</label>
+          </div>
           <div class="col-sm-12">
             <select name="instansi" class="form-control" id="instansi">
-                <option>- Select Dinas -</option>
+              <option>- Select Dinas -</option>
                 <?php 
                   foreach($instansi as $ins)
                   {
                     echo '<option value="'.$ins->id.'">'.$ins->nama.'</option>';
                   }
                 ?>
-              </select>
+            </select></br>
           </div>
 
-          <label class="control-label col-sm-2">Kategori:</label>
-            <div class="col-sm-12">
-              <select name="idKategori" class="form-control" id="kategori"  onChange="cariKerusakan()">
-                  <option>- Select Kategori -</option>
-                  <?php 
-                    foreach($kategori as $kat)
-                    {
-                      echo '<option value="'.$kat->id.'">'.$kat->nama.'</option>';
-                    }
-                  ?>
-                </select>
-            </div>
-          
-          <label class="control-label col-sm-2">Kerusakan:</label>
-            <div class="col-sm-12">
-              <select name="idKerusakan" class="form-control" id="kerusakan">
-                  <option>- Select Kerusakan -</option>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
+          </div>
+          <div class="col-sm-12">
+            <select name="idKategori" class="form-control" id="kategori"  onChange="cariKerusakan()">
+              <option>- Select Kategori -</option>
+                <?php 
+                  foreach($kategori as $kat)
+                  {
+                    echo '<option value="'.$kat->id.'">'.$kat->nama.'</option>';
+                  }
+                ?>
+            </select></br>
+          </div>
+
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
+          </div>
+          <div class="col-sm-12">
+            <select name="idKerusakan" class="form-control" id="kerusakan">
+              <option>- Select Kerusakan -</option>
                                             
-              </select>
-            </div>
-     
-          <label class="control-label col-sm-2">Nomor Surat:</label>
+            </select></br>
+          </div>
+          
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Comment:</label>
+          </div>
+          <div class="col-sm-12">
+            <textarea class="form-control" name="comment" rows="10" cols"30" placeholder="Enter comment"></textarea></br>
+          </div>
+
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Nomor Surat:</label>
+          </div>
           <div class="col-sm-12">
             <input type="text" class="form-control" name="nomorSurat" placeholder="Enter nomor surat">
           </div> 

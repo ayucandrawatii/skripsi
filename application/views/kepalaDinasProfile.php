@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Support
-  </title>
+  <title>Admin Pengaduan</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -28,23 +27,16 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    #myInput {
-      background-image: url('/css/searchicon.png');
-      background-position: 10px 10px;
-      background-repeat: no-repeat;
-      width: 100%;
-      font-size: 16px;
-      padding: 12px 20px 12px 40px;
-      border: 1px solid #ddd;
-      margin-bottom: 12px;
-    }
-
+  <style type="text/css">
+  .profile-picture {
+    width: 250px;
+    height: 250px;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    border-radius: 300px;
+    /*margin: 0 auto;*/
+  }
   </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -57,7 +49,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Hi, T.Support</b></span>
+      <span class="logo-lg"><b>Hi, Kepala Dinas</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -70,18 +62,6 @@
       </a> -->
 
       <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url()?>assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Technical Support</span>
-            </a>
-            
-          </li>
-          
-          
-        </ul>
       </div>
     </nav>
   </header>
@@ -95,35 +75,30 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url()?>assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Technical Support</p>
+          <p>Kepala Dinas</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="<?php echo base_url('TechnicalSupport/') ?>">
-            <i class="fa fa-history"></i> <span>List Pengaduan</span>       
+          <a href="<?php echo base_url('KepalaDinas/index') ?>">
+            <i class="fa fa-history"></i> <span>Pengaduan</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('TechnicalSupport/daftarKerusakan') ?>">
-            <i class="fa fa-users"></i> <span>Daftar kerusakan</span>       
+          <a href="<?php echo base_url('KepalaDinas/profile') ?>">
+            <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('TechnicalSupport/listSolusi') ?>">
-            <i class="fa fa-users"></i> <span>List solusi</span>       
-          </a>          
-        </li>
-        <li>
-          <a href="<?php echo base_url('TechnicalSupport/listQuery') ?>">
-            <i class="fa fa-users"></i> <span>List query</span>       
+          <a href="<?php echo base_url('loginAdmin/index') ?>">
+            <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
       </ul>
@@ -138,9 +113,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        List Pengaduan
+        Profile Kepala Dinas
+        
       </h1>      
-      </br>
     </section>
 
     <!-- Main content -->
@@ -149,42 +124,31 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          </br>        
-          <div class="row">
-            <div class="col-md-12">
-              <a href="<?php echo base_url('TechnicalSupport/tambahQuery/') ?>" type="button" class="btn btn-primary">Tambah Query</a>
-            </div>
-          </br></br><br>
-          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" action="<?php echo base_url('KepalaDinas/kepalaDinasProfileEdit/') ?>" method="post" enctype="multipart/form-data">
             <div class="box-body">
-              <table class="table table-bordered">
-                
-                <tr>
-                  <th style="width: 10px">NO</th>
-                  <th style="width: 200px">Jenis Kerusakan</th>
-                  <th style="width: 200px">Nama Kerusakan</th>
-                  <th style="width: 200px">Action</th>
-                </tr>
-                <?php foreach ($listQuery as $key => $post): ?>
-                <tr>
-                  <td><?php echo $key+1;?></td>
-                  <td><?php echo $post->nama;?></td>
-                  <td><?php echo $post->namaKerusakan;?></td>
-                  <td>
-                    <div class="btn-group">
-                      <!-- <a href="<?php echo base_url('AdminEdit/edit/').$post->id ?>" type="button" class="btn btn-default">Solusi</a> -->
-                    </div>
-                  </td>
-                 </tr>
-                <?php endforeach ?>
-                
-              </table>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Nama</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik email" name="email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Foto</label>
+                <div class="profile-picture" style="background:url('<?php echo base_url().$this->session->userdata('foto')?>')"></div> </br>
+                <input type="file" id="exampleInputFile" name="foto">
+              </div>
             </div>
-          </div>         
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
         </div>
-        </div>
+      </div>
       <!-- /.box -->
-
     </section>
     <!-- /.content -->
   </div>
@@ -200,13 +164,9 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/skripsi/assets/bower_components/jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-
-<!-- ChartJS -->
-<script src="<?php echo base_url() ?>assets/bower_components/Chart.js/Chart.js"></script>
+<script src="/skripsi/assets/bower_components/bootstrap/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url() ?>assets/css/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -215,31 +175,7 @@
 <script src="<?php echo base_url() ?>assets/css/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>assets/css/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
-
-<script>
-  function myFunction() {
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }
-</script>
 
 </body>
 </html>
+  

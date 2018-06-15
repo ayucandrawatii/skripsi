@@ -103,7 +103,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        List User
+        List Instansi
         
       </h1>      
     </section>
@@ -116,7 +116,7 @@
         <div class="box-header with-border">
           </br>
           <div class="">
-            <a href="<?php echo base_url('adminNambahUser/add/') ?>" type="button" class="btn btn-primary">Tambah User</a>
+            <a href="<?php echo base_url('adminNambahInstansi/add/') ?>" type="button" class="btn btn-primary">Tambah Instansi</a>
           </div>
           </br>
           <!-- /.box-header -->
@@ -125,17 +125,17 @@
                 
                 <tr>
                   <th style="width: 10px">NO</th>
-                  <th style="width: 500px">Nama User</th>
+                  <th style="width: 500px">Nama Instansi</th>
                   <th>Action</th>
                 </tr>
-                <?php foreach ($user as $key => $post): ?>
+                <?php foreach ($instansi as $key => $post): ?>
                 <tr>
                   <td><?php echo $key+1;?></td>
-                  <td><?php echo $post->username;?></td>                 
+                  <td><?php echo $post->nama;?></td>                 
                   <td>
                     <div class="btn-group" style="align:center";>
-                      <a href="<?php echo base_url('AdminNambahUser/edit/').$post->id_user ?>" type="button" class="btn btn-default">Edit</a>
-                      <a href="<?php echo base_url('AdminNambahUser/delete/').$post->id_user ?>" type="button" class="btn btn-default">Hapus</a>
+                      <a href="<?php echo base_url('AdminNambahInstansi/edit/').$post->id ?>" type="button" class="btn btn-default">Edit</a>
+                      <a href="<?php echo base_url('AdminNambahInstansi/delete/').$post->id ?>" type="button" class="btn btn-default">Hapus</a>
                     </div>
                   </td>
                 </tr>
@@ -188,17 +188,6 @@
   $(document).ready(function () {
     $('.sidebar-menu').tree()
   })
-</script>
-
-
-<script>
-// function deleteUser() {
-//     var ask = window.confirm("Apa anda yakin menghapus user?");
-//     if (ask) {
-//         window.location.href = "<?php echo base_url() ?>AdminHapus/delete";
-
-//     }
-// }
 </script>
 </body>
 </html>

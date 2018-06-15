@@ -71,16 +71,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url()?>assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Technical Support</span>
-            </a>
-            
-          </li>
-          
-          
         </ul>
       </div>
     </nav>
@@ -104,7 +94,7 @@
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li>
           <a href="<?php echo base_url('TechnicalSupport/') ?>">
@@ -113,20 +103,25 @@
         </li>
         <li>
           <a href="<?php echo base_url('TechnicalSupport/daftarKerusakan') ?>">
-            <i class="fa fa-users"></i> <span>Daftar kerusakan</span>       
+            <i class="fa fa-cog"></i> <span>Daftar kerusakan</span>       
           </a>          
         </li>
         <li>
           <a href="<?php echo base_url('TechnicalSupport/listSolusi') ?>">
-            <i class="fa fa-users"></i> <span>List solusi</span>       
+            <i class="fa fa-wrench"></i> <span>List solusi</span>       
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('TechnicalSupport/listQuery') ?>">
-            <i class="fa fa-users"></i> <span>List query</span>       
+        <li>
+          <a href="<?php echo base_url('TechnicalSupport/profile') ?>">
+            <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          
         </li>
-        
+        <li>
+          <a href="<?php echo base_url('TechnicalSupport/signOut') ?>">
+            <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
+          </a>          
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -139,7 +134,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        List Pengaduan
+        Daftar Kerusakan
       </h1>      
       </br>
     </section>
@@ -173,8 +168,10 @@
                   <td><?php echo $post->nama;?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo base_url('TechnicalSupport/editKerusakan/').$post->id ?>" type="button" class="btn btn-default">Edit</a>
-                      <a href="<?php echo base_url('TechnicalSupport/deleteKerusakan/').$post->id ?>" type="button" class="btn btn-default">Hapus</a>
+                      <a href="<?php echo base_url('TechnicalSupport/editKerusakan/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
+                    </div>
+                    <div class="btn-group">
+                      <a href="<?php echo base_url('TechnicalSupport/deleteKerusakan/').$post->id ?>" type="button" class="btn btn-danger">Hapus</a>
                     </div>
                   </td>
                  </tr>

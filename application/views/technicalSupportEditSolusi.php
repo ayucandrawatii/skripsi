@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>Tecchnical Support</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -42,38 +42,42 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
       <div class="box-header with-border">
-        <h1 class="box-title">Edit User</h1>
+        <h1 class="box-title">Edit Solusi</h1>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
 
-      <form id="submitpengaduan" method="post" action="<?= base_url('AdminNambahUser/submitEdit/').$user->id_user?>" class="form-horizontal" style="color:white;">
-                <div class="form-group"></br>
-                  <div class="col-sm-12">
-                    <label class="control-label" style="color:black; font-family:calibri ;">Nama User:</label>
-                  </div>
-                  <div class="col-sm-12">
-                    <input type="text" class="form-control" name="username" value="<?= $user->username ?>"></br>
-                  </div>
+      <form id="submitpengaduan" method="post" action="<?= base_url('TechnicalSupport/updateSolusi/')?>" class="form-horizontal" style="color:white;">
+        <div class="form-group"></br>    
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Gejala:</label>
+          </div>
+          <div class="col-sm-12">
+            <textarea class="form-control" name="gejala" rows="4" cols"30"><?= $posting->gejala ?></textarea></br>
+          </div>
 
-                  <div class="col-sm-12">
-                    <label class="control-label" style="color:black; font-family:calibri ;">Password:</label>
-                  </div>
-                  <div class="col-sm-12">
-                    <input type="text" class="form-control" name="password">
-                  </div>
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Kemungkinan Penyebab:</label>
+          </div>
+          <div class="col-sm-12">
+            <textarea class="form-control" name="kemungkinanPenyebab" rows="4" cols"30"><?= $posting->kemungkinanPenyebab ?></textarea></br>
+          </div>
 
-                </div>             
+          <div class="col-sm-12">
+            <label class="control-label" style="color:black; font-family:calibri ;">Solusi:</label>
+          </div>
+          <div class="col-sm-12">
+            <textarea class="form-control" name="solusi" rows="10" cols"30"><?= $posting->solusi ?></textarea>
+          </div>
 
-                
-                  <div class="box-footer">
-                    <!-- <a href="<?php echo base_url('AdminNambahUser').$user->id_user ?>" type="button" class="btn btn-default">Cancel</a> -->
-                    <a href="<?php echo base_url('AdminNambahUser')?>" type="button" class="btn btn-default">Cancel</a>
-                    <input type="submit" value="submit" name="submit" class="btn btn-info">
-                  </div>
-                
-      </form>
-
+           <input type="hidden" class="form-control" name="idSolusi" value="<?= $posting->idSolusi ?>">
+        </div>
+        
+          <div class="box-footer">
+            <a href="<?php echo base_url('TechnicalSupport/listSolusi') ?>" type="button" class="btn btn-default">Cancel</a>
+            <input type="submit" value="submit" name="submit" class="btn btn-info">
+          </div>        
+      </form>   
     </div>
   </div>
 
