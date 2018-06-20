@@ -53,7 +53,7 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
           </div>
           <div class="col-sm-12">
-            <select name="kategori" class="form-control" id="kategori">
+            <select name="kategori" class="form-control" id="kategori" required>
                 <option>- Select Kategori -</option>
                  <option value="1">hardware</option>
                  <option value="2">software</option>
@@ -65,7 +65,7 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
           </div></br></br>
           <div class="col-sm-12">
-            <textarea class="form-control" name="kerusakan" rows="10" cols"30" placeholder="Enter kerusakan"></textarea>
+            <textarea class="form-control" name="kerusakan" rows="10" cols"30" placeholder="Enter kerusakan" required></textarea>
           </div>
         </div>
         

@@ -58,8 +58,8 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin Pengaduan</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><?php echo $this->session->userdata('nama') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
       
@@ -134,8 +134,10 @@
                   <td><?php echo $post->username;?></td>                 
                   <td>
                     <div class="btn-group" style="align:center";>
-                      <a href="<?php echo base_url('AdminNambahUser/edit/').$post->id_user ?>" type="button" class="btn btn-default">Edit</a>
-                      <a href="<?php echo base_url('AdminNambahUser/delete/').$post->id_user ?>" type="button" class="btn btn-default">Hapus</a>
+                      <div>
+                        <a href="<?php echo base_url('AdminNambahUser/edit/').$post->id_user ?>" type="button" class="btn btn-success">Edit</a>
+                        <a href="#" type="button" class="btn btn-danger" onclick="deleteUser(<?php echo $post->id_user; ?>)">Hapus</a>
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -172,10 +174,35 @@
 </div>
 <!-- ./wrapper -->
 
+
+</body>
+<!-- Modal -->
+              <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                    </div>
+                    <div id="hasilView" class="modal-body">
+                      Apakah anda yakin akan menghapus user?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" id="btn-hapus">Ya</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</html>
 <!-- jQuery 3 -->
-<script src="/skripsi/assets/bower_components/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/skripsi/assets/bower_components/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<!-- ChartJS -->
+<script src="<?php echo base_url() ?>assets/bower_components/Chart.js/Chart.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url() ?>assets/css/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -184,22 +211,13 @@
 <script src="<?php echo base_url() ?>assets/css/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>assets/css/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
 
 
 <script>
-// function deleteUser() {
-//     var ask = window.confirm("Apa anda yakin menghapus user?");
-//     if (ask) {
-//         window.location.href = "<?php echo base_url() ?>AdminHapus/delete";
-
-//     }
-// }
+function deleteUser(id_user) {
+    $('#hapus').modal();
+    $('#btn-hapus').click(function(event){
+      window.location.href = "<?php echo base_url() ?>AdminNambahUser/delete/"+id_user;
+    });
+}
 </script>
-</body>
-</html>
-  

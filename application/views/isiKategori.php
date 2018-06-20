@@ -1,4 +1,4 @@
-<option>- Select Kerusakan -</option>
+<option value=''>- Select Kerusakan -</option>
 <?php 
 	foreach($kerusakan->result() as $ker)
 	{

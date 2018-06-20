@@ -53,7 +53,7 @@
             <label class="control-label" for="instansi" style="color:black; font-family:calibri ;">Instansi:</label>
           </div>
           <div class="col-sm-12">
-            <select name="instansi" class="form-control" id="instansi">
+            <select name="instansi" class="form-control" id="instansi" required>
               <option>- Select Dinas -</option>
                 <?php 
                   foreach($instansi as $ins)
@@ -68,7 +68,7 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
           </div>
           <div class="col-sm-12">
-            <select name="idKategori" class="form-control" id="kategori"  onChange="cariKerusakan()">
+            <select name="idKategori" class="form-control" id="kategori"  onChange="cariKerusakan()" required>
               <option>- Select Kategori -</option>
                 <?php 
                   foreach($kategori as $kat)
@@ -83,7 +83,7 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
           </div>
           <div class="col-sm-12">
-            <select name="idKerusakan" class="form-control" id="kerusakan">
+            <select name="idKerusakan" class="form-control" id="kerusakan" required>
               <option>- Select Kerusakan -</option>
                                             
             </select></br>
@@ -93,14 +93,14 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Comment:</label>
           </div>
           <div class="col-sm-12">
-            <textarea class="form-control" name="comment" rows="10" cols"30" placeholder="Enter comment"></textarea></br>
+            <textarea class="form-control" name="comment" rows="10" cols"30" placeholder="Enter comment" required></textarea></br>
           </div>
 
           <div class="col-sm-12">
             <label class="control-label" style="color:black; font-family:calibri ;">Nomor Surat:</label>
           </div>
           <div class="col-sm-12">
-            <input type="text" class="form-control" name="nomorSurat" placeholder="Enter nomor surat">
+            <input type="text" class="form-control" name="nomorSurat" placeholder="Enter nomor surat" required>
           </div> 
         </div>
         

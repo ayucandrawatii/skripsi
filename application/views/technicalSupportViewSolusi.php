@@ -1,5 +1,7 @@
 <?php foreach ($listSolusi as $key => $post): ?>
         
+          <!-- <label><?php print_r($hasil);?></label></br> -->
+
           <label>GEJALA</label></br>
           <p><?php echo $post->gejala;?></p></br>
           <label>KEMUNGKINAN PENYEBAB</label></br>

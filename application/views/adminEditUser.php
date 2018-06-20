@@ -63,6 +63,13 @@
                     <input type="text" class="form-control" name="password">
                   </div>
 
+                  <div class="col-sm-12">
+                    <label class="control-label" style="color:black; font-family:calibri ;">Confirm Password:</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="password" class="form-control" name="confirmpassword">
+                  </div>
+
                 </div>             
 
                 

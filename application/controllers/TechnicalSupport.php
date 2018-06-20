@@ -239,7 +239,7 @@ class TechnicalSupport extends CI_Controller {
 
 	public function solusi($idPengaduan){
 		
-		$comment=$this->ModelTechnicalSupport->select_comment($idPengaduan); //nyarik komen
+		$comment=$this->ModelTechnicalSupport->select_comment($idPengaduan); //mencari komen
 		$idKerusakan=$this->ModelTechnicalSupport->select_idKerusakan($idPengaduan);
 		$namakerusakan=$this->ModelTechnicalSupport->select_namaKerusakan($idKerusakan);
 		$query=$comment.' '.$namakerusakan;
@@ -283,14 +283,14 @@ class TechnicalSupport extends CI_Controller {
 				if ($tf==0) { // kalo kata yang dicari tidak ada disemua dokumen
 					$x++; // maka kata tsb diabaikan (tidak dihitung)
 				}else{
-					$idf=log10(($df+1)/($tf+1)); // hitung idf, $df+1 = jumlah dokumen + query, $tf+1 =jumlah kata di semua dokumen + query
+					$idf=log10(($df+1)/($tf+1)); // hitung idf, $df+1 = jumlah dokumen + query, $tf+1 =jumlah kata x di semua dokumen + query
 					$bobotQ[$term[$x]]=$tf*$idf; // perhitungan bobot pada setiap term
 
 					//rumus cosin penyebut query
 					$bobotKuadratQuery=$bobotKuadratQuery + pow($bobotQ[$term[$x]], 2); //dikuadrat 2
 
 
-					$bobotQuery[$x]= array( $term[$x]=>$bobotQ[$term[$x]], ); // untuk mengetahui nilai bobot pada setiap term, digunakan saat menghitung cosine
+					$bobotQuery[$x]= array( $term[$x]=>$bobotQ[$term[$x]], ); // untuk mengetahui nilai bobot pada setiap term, digunakan saat menghitung cosine pd bagian penyebut
 
 					$termTerseleksi[$x]=$term[$x]; //$termTerseleksi = menyimpan term yang tidak nol
 					$x++;
@@ -301,14 +301,14 @@ class TechnicalSupport extends CI_Controller {
 			}
 
 			//mencari id dokumen
-			$id=$this->ModelTechnicalSupport->select_id();
+			$id=$this->ModelTechnicalSupport->select_id(); // mencari id
 			$y=0;
 			
 			
 			foreach ($id->result() as $id) {
-				$idSolusi[$y]=$id->idSolusi;
+				$idSolusi[$y]=$id->idSolusi; // id ubah ke array
 
-				$term=$this->ModelTechnicalSupport->selecttermIndex($idSolusi[$y]);
+				$term=$this->ModelTechnicalSupport->selecttermIndex($idSolusi[$y]); // mencari term berdasarkan id dokumen
 				$z=0;
 				$bobotKuadrat=0;
 				$bobotKuadratSolusi=0;
@@ -317,30 +317,26 @@ class TechnicalSupport extends CI_Controller {
 				
 				foreach ($term->result() as $term) {
 					
-					if (in_array($term->term, $termTerseleksi)) {
+					if (in_array($term->term, $termTerseleksi)) { //menghitung pembilang, kata x yang ada query dan dokumen
 						 //$termTerseleksiSolusi[$z]=$term->term;
 						$df= $this->ModelTechnicalSupport->select_df();
 						$tf= $this->ModelTechnicalSupport->select_tf($term->term);
 						$idfSolusi=log10(($df+1)/($tf+1));
 						$bobot=$term->tf* $idfSolusi;
 						
-						$bobotKuadrat=$bobotKuadrat + pow($bobot, 2);
+						$bobotKuadrat=$bobotKuadrat + pow($bobot, 2); //bobot pembilang
 						$atas= $atas+ $bobot* $bobotQ[$term->term];
-
-						//rumus cosin pembilang
-						//$QuerykaliTerm[]=$QuerykaliTerm*($bobot*$bobotQ[$z]);
-						
-
 						$z++;
 					}
 					else{
 
-					//penyebut solusi
+					//menghitung penyebut solusi
 					$df= $this->ModelTechnicalSupport->select_df();
 					$tf= $this->ModelTechnicalSupport->select_tf($term->term);
 					$idfSolusi=log10(($df+1)/($tf));
 					$bobot=$term->tf*$idfSolusi;
 					//rumus cosin penyebut
+					//bobotKuadratSolusi = perhitungan bobot solusi yg ada di penyebut, dan hanya bobot kata x yg belum terhitung dibagian pembilang. agar lebih efisien
 					$bobotKuadratSolusi=$bobotKuadratSolusi + pow($bobot, 2);
 					}
 
@@ -348,7 +344,7 @@ class TechnicalSupport extends CI_Controller {
 
 				}
 
-			if ($z==0) {
+			if ($z==0) { //perhitungan jika semua kata tidak ada yg sama di query dan dokumen
 				$y++;
 			} else{
 
@@ -364,7 +360,7 @@ class TechnicalSupport extends CI_Controller {
 				$hasil[$idSolusi[$y]]=$jumDocKaliQuery[$idSolusi[$y]]/($jum_akarkuadrat[$idSolusi[$y]]*$jum_akarkuadratQuery);
 				$y++;
 
-				$max =max($hasil);
+				$max =max($hasil); //cari hasil cosine tertinggi
 				$key = array_keys($hasil, $max);
 				$keys =$key[0];
 			}
@@ -393,6 +389,7 @@ class TechnicalSupport extends CI_Controller {
 		$this->db->where('idSolusi', $keys);
 		$this->db->from('tabelsolusi');
 		$data['listSolusi'] = $this->db->get()->result();
+		
 		$this->load->view('technicalSupportViewSolusi',$data);
 	}
 

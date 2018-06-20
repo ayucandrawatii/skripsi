@@ -72,18 +72,18 @@
             <!-- Blog Post -->
             <div class="card mb-4">              
               <div class="card-body">
-                <h5 class="card-title"><?php echo $post->instansi;?></h5>
-                <h6 class="card-title"><?php echo $post->kategori;?></h6>
-                <h6 class="card-title"><?php echo $post->namaKerusakan;?></h6>
+                <h4 class="card-title"><?php echo $post->instansi;?></h4>
+                <h6 class="card-title">Kategori : <?php echo $post->kategori;?></h6>
+                <h6 class="card-title">Kerusakan : <?php echo $post->namaKerusakan;?></h6>
                 <h6 class="card-title"><?php echo $post->comment;?></h6>
 
                 <?php 
                   if($post->status=='belum diproses'){?>
-                    <span class="btn btn-danger btn-sm"><?php echo $post->status;?></span><?php
+                    <span class="btn btn-danger btn-sm"><small><?php echo $post->status;?></small></span><?php
                   }
 
                   else{?>
-                    <span class="btn btn-success btn-sm"><?php echo $post->status;?></span><?php
+                    <span class="btn btn-success btn-sm"><small><?php echo $post->status;?></small></span><?php
                   }?>
                 
                 

@@ -22,12 +22,18 @@ class AdminNambahUser extends CI_Controller {
 	{
 		if(isset($_POST['submit']))
 			{
-				$data=$this->input->post();
-				$this->db->set('username', $this->input->post('username'));
-				$this->db->where('id_user', $id);
-				$this->db->insert('tbuser');
+				if ($_POST['password']==$_POST['confirmpassword']) {
+					$data=$this->input->post();
+					$this->db->set('username', $this->input->post('username'));
+					$this->db->set('password', md5($this->input->post('password')));
+					$this->db->where('id_user', $id);
+					$this->db->insert('tbuser');
 
-				redirect('adminNambahUser');
+					redirect('adminNambahUser');
+				} else{
+					$this->load->view('adminAddUser');
+				}
+				
 			}
 	}
 
@@ -55,12 +61,16 @@ class AdminNambahUser extends CI_Controller {
 		if(isset($_POST['submit']))
 			{
 				$data=$this->input->post();
-				$this->db->set('username', $this->input->post('username'));
-				$this->db->set('password', md5($this->input->post('password')));
-				$this->db->where('id_user', $id);
-				$this->db->update('tbuser');
+				if ($_POST['password']==$_POST['confirmpassword']) {
+					$this->db->set('username', $this->input->post('username'));
+					$this->db->set('password', md5($this->input->post('password')));
+					$this->db->where('id_user', $id);
+					$this->db->update('tbuser');
 
-				redirect('adminNambahUser');
+					redirect('adminNambahUser');
+				} else{
+					$this->load->view('adminAddUser');
+				}
 			}
 	}
 }

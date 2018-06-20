@@ -79,8 +79,8 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin Pengaduan</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><?php echo $this->session->userdata('nama') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
       
@@ -140,11 +140,11 @@
             <div class="box-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Nama</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik email" name="email">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik email" name="email" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputFile">Foto</label>

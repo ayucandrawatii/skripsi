@@ -53,21 +53,21 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Gejala:</label>
           </div>
           <div class="col-sm-12">
-            <textarea class="form-control" name="gejala" rows="4" cols"30"><?= $posting->gejala ?></textarea></br>
+            <textarea class="form-control" name="gejala" id="gejala"><?= $posting->gejala ?></textarea></br>
           </div>
 
           <div class="col-sm-12">
             <label class="control-label" style="color:black; font-family:calibri ;">Kemungkinan Penyebab:</label>
           </div>
           <div class="col-sm-12">
-            <textarea class="form-control" name="kemungkinanPenyebab" rows="4" cols"30"><?= $posting->kemungkinanPenyebab ?></textarea></br>
+            <textarea class="form-control" name="kemungkinanPenyebab" id="penyebab"><?= $posting->kemungkinanPenyebab ?></textarea></br>
           </div>
 
           <div class="col-sm-12">
             <label class="control-label" style="color:black; font-family:calibri ;">Solusi:</label>
           </div>
           <div class="col-sm-12">
-            <textarea class="form-control" name="solusi" rows="10" cols"30"><?= $posting->solusi ?></textarea>
+            <textarea class="form-control" name="solusi" id="solusi"><?= $posting->solusi ?></textarea>
           </div>
 
            <input type="hidden" class="form-control" name="idSolusi" value="<?= $posting->idSolusi ?>">
@@ -84,3 +84,17 @@
 </body>
 
 </html>
+<!-- jQuery 3 -->
+<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="<?php echo base_url() ?>assets/plugins/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/ckeditor/config.js"></script>
+
+<script type="text/javascript">
+CKEDITOR.replace('gejala');
+CKEDITOR.replace('solusi');
+CKEDITOR.replace('penyebab');
+ CKEDITOR.on('instanceLoaded', function(e) {e.editor.resize('100%', 350)} )
+</script>

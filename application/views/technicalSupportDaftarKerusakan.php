@@ -171,7 +171,7 @@
                       <a href="<?php echo base_url('TechnicalSupport/editKerusakan/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
                     </div>
                     <div class="btn-group">
-                      <a href="<?php echo base_url('TechnicalSupport/deleteKerusakan/').$post->id ?>" type="button" class="btn btn-danger">Hapus</a>
+                      <a href="#" type="button" class="btn btn-danger" onclick="deleteKerusakan(<?php echo $post->id; ?>)">Hapus</a>
                     </div>
                   </td>
                  </tr>
@@ -188,15 +188,32 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  
-
   <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+   <!-- <div class="control-sidebar-bg"></div> -->
 </div>
 <!-- ./wrapper -->
+
+</body>
+<!-- Modal -->
+  <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Warning</h4>
+        </div>
+        <div id="hasilView" class="modal-body">
+          Apakah anda yakin akan menghapus instansi?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="btn-hapus">Ya</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</html>
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -214,112 +231,12 @@
 <script src="<?php echo base_url() ?>assets/css/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>assets/css/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
 
 <script>
-  function myFunction() {
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }
-</script>
-
-<script>
-  $(function () {
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
-     
-    var areaChartData = {
-      labels  : 
-      <?php 
-      $month = array('', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des');
-      echo '[ ';
-      foreach ($grafik as $key => $g) {
-        echo "'".$month[$g->bulan]."', ";
-      } 
-      echo ' ]'; ?> 
-      ,
-      datasets: [
-        {
-          label               : 'Pengaduan',
-          fillColor           : 'rgba(210, 214, 222, 1)',
-          strokeColor         : 'rgba(210, 214, 222, 1)',
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : 
-            <?php 
-            echo '[ ';
-            foreach ($grafik as $key => $g) {
-              echo $g->total.', ';
-            } 
-            echo ' ]'; ?> 
-        },
-      ]
-    }
-
-    
-
-    
-    //-------------
-    //- BAR CHART -
-    //-------------
-    var barChartCanvas                   = $('#barChart').get(0).getContext('2d')
-    var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData
-    barChartData.datasets[0].fillColor   = '#00a65a'
-    barChartData.datasets[0].strokeColor = '#00a65a'
-    barChartData.datasets[0].pointColor  = '#00a65a'
-    var barChartOptions                  = {
-      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-      scaleBeginAtZero        : true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines      : true,
-      //String - Colour of the grid lines
-      scaleGridLineColor      : 'rgba(0,0,0,.05)',
-      //Number - Width of the grid lines
-      scaleGridLineWidth      : 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines  : true,
-      //Boolean - If there is a stroke on each bar
-      barShowStroke           : true,
-      //Number - Pixel width of the bar stroke
-      barStrokeWidth          : 2,
-      //Number - Spacing between each of the X value sets
-      barValueSpacing         : 5,
-      //Number - Spacing between data sets within X values
-      barDatasetSpacing       : 1,
-      //String - A legend template
-      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
-      //Boolean - whether to make the chart responsive
-      responsive              : true,
-      maintainAspectRatio     : true
-    }
-
-    barChartOptions.datasetFill = false
-    barChart.Bar(barChartData, barChartOptions)
-  })
-</script>
-</body>
-</html>
+function deleteKerusakan(id) {
+    $('#hapus').modal();
+    $('#btn-hapus').click(function(event){
+      window.location.href = "<?php echo base_url() ?>TechnicalSupport/deleteKerusakan/"+id;
+    });
+}
+</script>  

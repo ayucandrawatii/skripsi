@@ -9,4 +9,10 @@ class ModelLoginAdmin extends CI_Model {
 		$this->db->where('password',$password);
 		return $this->db->get('tbadmin')->row_array();
 	}
+
+	public function email($username)
+	{
+		$query = $this->db->query('SELECT email FROM tbadmin WHERE username="'.$username.'"');
+		return $query->row()->email;
+	}
 }

@@ -40,14 +40,19 @@ class Welcome extends CI_Controller {
 	{
 		if(isset($_POST['submit']))
 		{
-			$data=$this->input->post();
-			$this->db->set('idKategori', $this->input->post('idKategori'));
-			$this->db->set('idInstansi', $this->input->post('idInstansi'));
-			$this->db->set('idKerusakan', $this->input->post('idKerusakan'));
-			$this->db->set('comment', $this->input->post('comment'));
-			$this->db->insert('tabelPengaduan');
+			if ($_POST['idKategori']!=''||$_POST['idInstansi']!=''||$_POST['idKerusakan']!='') {
+				$data=$this->input->post();
+				$this->db->set('idKategori', $this->input->post('idKategori'));
+				$this->db->set('idInstansi', $this->input->post('idInstansi'));
+				$this->db->set('idKerusakan', $this->input->post('idKerusakan'));
+				$this->db->set('comment', $this->input->post('comment'));
+				$this->db->insert('tabelPengaduan');
 
-			redirect('welcome/posting');
+				redirect('welcome/posting');
+			}else{
+			redirect('welcome/home');
+		}
+			
 		}
 
 		else{

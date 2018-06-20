@@ -67,6 +67,7 @@ class AdminPengaduan extends CI_Controller {
 				$this->db->set('idInstansi', $this->input->post('instansi'));
 				$this->db->set('idKategori', $this->input->post('idKategori'));
 				$this->db->set('idKerusakan', $this->input->post('idKerusakan'));
+				$this->db->set('comment', $this->input->post('comment'));
 				$this->db->set('nomorSurat', $this->input->post('nomorSurat'));
 				$this->db->insert('tabelpengaduan');
 

@@ -58,8 +58,8 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin Pengaduan</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><?php echo $this->session->userdata('nama') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
       
@@ -134,8 +134,10 @@
                   <td><?php echo $post->nama;?></td>                 
                   <td>
                     <div class="btn-group" style="align:center";>
-                      <a href="<?php echo base_url('AdminNambahInstansi/edit/').$post->id ?>" type="button" class="btn btn-default">Edit</a>
-                      <a href="<?php echo base_url('AdminNambahInstansi/delete/').$post->id ?>" type="button" class="btn btn-default">Hapus</a>
+                      <div>
+                        <a href="<?php echo base_url('AdminNambahInstansi/edit/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
+                        <a href="#" type="button" class="btn btn-danger" onclick="deleteInstansi(<?php echo $post->id; ?>)">Hapus</a>
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -143,16 +145,6 @@
                 
               </table>
             </div>
-            <!-- /.box-body -->
-            <!-- <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div> -->
           </div>         
         </div>
         </div>
@@ -162,20 +154,38 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  
-
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
+
+</body>
+<!-- Modal -->
+              <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                    </div>
+                    <div id="hasilView" class="modal-body">
+                      Apakah anda yakin akan menghapus instansi?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" id="btn-hapus">Ya</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</html>
 
 <!-- jQuery 3 -->
-<script src="/skripsi/assets/bower_components/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/skripsi/assets/bower_components/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<!-- ChartJS -->
+<script src="<?php echo base_url() ?>assets/bower_components/Chart.js/Chart.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url() ?>assets/css/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -184,11 +194,13 @@
 <script src="<?php echo base_url() ?>assets/css/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>assets/css/demo.js"></script>
+
+
 <script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
-</body>
-</html>
-  
+function deleteInstansi(id) {
+    $('#hapus').modal();
+    $('#btn-hapus').click(function(event){
+      window.location.href = "<?php echo base_url() ?>AdminNambahInstansi/delete/"+id;
+    });
+}
+</script>  

@@ -85,8 +85,8 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin Pengaduan</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><?php echo $this->session->userdata('nama') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
       
@@ -246,7 +246,7 @@
                       <a href="<?php echo base_url('AdminEdit/edit/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
                     </div>
                     <div class="btn-group">
-                      <a href="#" type="button" class="btn btn-danger" onclick="deletePengaduan()">Hapus</a>
+                      <a href="#" type="button" class="btn btn-danger" onclick="deletePengaduan(<?php echo $post->id; ?>)">Hapus</a>
                     </div>
                     <div class="btn-group">
                       <a href="<?php echo base_url('KirimEmail/index/').$post->id ?>" type="button" class="btn btn-info">Kirim</a>
@@ -412,14 +412,32 @@
 </script>
 
 <script>
-function deletePengaduan() {
-    var ask = window.confirm("Apa anda yakin menghapus pengaduan?");
-    if (ask) {
-        window.location.href = "<?php echo base_url() ?>AdminHapus/delete";
-
-    }
+function deletePengaduan(id) {
+    $('#hapus').modal();
+    $('#btn-hapus').click(function(event){
+      window.location.href = "<?php echo base_url() ?>AdminHapus/delete/"+id;
+    });
 }
 </script>
 
 </body>
+
+<!-- Modal -->
+              <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                    </div>
+                    <div id="hasilView" class="modal-body">
+                      Apakah anda yakin akan menghapus pengaduan?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" id="btn-hapus">Ya</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 </html>

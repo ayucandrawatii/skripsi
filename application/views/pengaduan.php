@@ -151,14 +151,13 @@
             <hr class="light">
             <div class="text-justify">
             </br>
-              <p class="text-faded" style="font-size:14px;">(*) Harap mengisi data yang benar</p>
-              
+              <p class="text-faded" style="font-size:14px;">(*) Harus diisi</p>
               <form id="submitpengaduan" method="post" action="<?= base_url() ?>welcome/submit" class="form-horizontal" style="color:white;">
               <div class="form-group">
-                  <label class="control-label col-sm-2" for="instansi">Instansi:</label>
+                  <label class="control-label col-sm-3" for="instansi">Instansi* :</label>
                   <div class="col-sm-12">
-                    <select name="idInstansi" class="form-control" id="instansi">
-                        <option>- Select Dinas -</option>
+                    <select name="idInstansi" class="form-control" id="instansi" required>
+                        <option value=''>- Select Dinas -</option>
                         <?php 
                           foreach($instansi as $ins)
                           {
@@ -170,10 +169,10 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="control-label col-sm-2">Kategori:</label>
+                  <label class="control-label col-sm-3">Kategori* :</label>
                     <div class="col-sm-12">
-                      <select name="idKategori" class="form-control" id="kategori"  onChange="cariKerusakan()">
-                          <option>- Select Kategori -</option>
+                      <select name="idKategori" class="form-control" id="kategori"  onChange="cariKerusakan()" required>
+                          <option value=''>- Select Kategori -</option>
                           <?php 
                             foreach($kategori as $kat)
                             {
@@ -184,10 +183,10 @@
                     </div>
                 </div>    
 
-                <label class="control-label col-sm-2">Kerusakan:</label>
+                <label class="control-label col-sm-3">Kerusakan* :</label>
                 <div class="col-sm-12">
-                  <select name="idKerusakan" class="form-control" id="kerusakan">
-                      <option>- Select Kerusakan -</option>
+                  <select name="idKerusakan" class="form-control" id="kerusakan" required>
+                      <option value=''>- Select Kerusakan -</option>
                                                 
                   </select>
                 </div></br>
