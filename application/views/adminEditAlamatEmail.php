@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Support</title>
+  <title>Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -42,44 +42,29 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
       <div class="box-header with-border">
-        <h1 class="box-title">Edit Kerusakan</h1>
+        <h1 class="box-title">Edit Alamat Email</h1>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
 
-      <form id="submitpengaduan" method="post" action="<?= base_url('TechnicalSupport/update/')?>" class="form-horizontal" style="color:white;">
-        <div class="form-group"></br>
-          <div class="col-sm-12">
-            <label class="control-label" style="color:black; font-family:calibri ;">Kategori:</label>
-          </div></br>
-          <div class="col-sm-12">
-            <select name="kategori" class="form-control">
-                <option>- Select Kategori -</option>
-                 <?php 
-                  foreach($kategori as $kat)
-                  {
-                    $selected = ($kat->id == $posting->idKategori) ? 'selected' : '';
-                    echo '<option value="'.$kat->id.'" '.$selected.'>'.$kat->nama.'</option>';
-                  }
-                ?>
-              </select></br>
-          </div>
+      <form id="submitpengaduan" method="post" action="<?= base_url('AdminNambahAlamatEmail/submitEdit/').$namaEmail->id?>" class="form-horizontal" style="color:white;">
+                <div class="form-group"></br>
+                  <div class="col-sm-12">
+                    <label class="control-label" style="color:black;">Nama Alamat Email:</label>
+                  </div>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" name="namaEmail" value="<?= $namaEmail->namaEmail ?>">
+                  </div>
+                </div>             
 
-          <div class="col-sm-12">
-            <label class="control-label" style="color:black; font-family:calibri ;">Kerusakan:</label>
-          </div>
-          <div class="col-sm-12">
-            <textarea class="form-control" name="kerusakan" rows="10" cols"30" required><?= $posting->namaKerusakan ?></textarea>
-          </div>
+                
+                  <div class="box-footer">
+                    <a href="<?php echo base_url('AdminNambahAlamatEmail')?>" type="button" class="btn btn-default">Cancel</a>
+                    <input type="submit" value="submit" name="submit" class="btn btn-info">
+                  </div>
+                
+      </form>
 
-           <input type="hidden" class="form-control" name="id" value="<?= $posting->id ?>">
-        </div>
-        
-          <div class="box-footer">
-            <a href="<?php echo base_url('TechnicalSupport/daftarKerusakan') ?>" type="button" class="btn btn-default">Cancel</a>
-            <input type="submit" value="submit" name="submitTambahKerusakan" class="btn btn-info">
-          </div>        
-      </form>   
     </div>
   </div>
 

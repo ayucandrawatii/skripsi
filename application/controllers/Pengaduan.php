@@ -6,7 +6,7 @@ class pengaduan extends CI_Controller {
 	
 	public function index()
 	{
-		if (!$this->session->userdata('isLoggedIn')) redirect('welcome/index');
+		//if (!$this->session->userdata('isLoggedIn')) redirect('welcome/index');
 		$get_instansi = $this->db->select('*')->from('instansi')->get();
 			     $data['instansi'] = $get_instansi->result();
 

@@ -93,6 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<input type="password" name="password" placeholder="password"/></br></br></br></br>`
 				<input type="submit" class="btn btn-primary btn-m" name="login" value="LOGIN">
 			</div>
+			<?php var_dump($this->session->userdata()); ?>
 		<?php echo form_close() ?>					<!--jika ada form_open, maka harus ada form_close-->
 	</div>
 	<p class="footer">Selamat datang di website kami</p>

@@ -74,6 +74,8 @@
 
 
  $this->fpdf->Output("../skripsi/uploads/laporan.pdf","F");
+ // $this->fpdf->Output();
+
 
  redirect(base_url('KirimEmail/send'));
  // Insert a logo in the top-left corner at 300 dpi

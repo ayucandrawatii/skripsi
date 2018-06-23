@@ -24,41 +24,47 @@ class kirimEmail extends CI_Controller {
 	{
 		$this->load->library('email');
 
-		$subject = 'This is a test';
-		$message = '<p>This message has been sent for testing purposes.</p>';
+		$email = $this->db->get('tb_alamat_kirim_email')->result();
 
-		// Get full html:
-		$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-		<html xmlns="http://www.w3.org/1999/xhtml">
-		<head>
-		    <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
-		    <title>' . html_escape($subject) . '</title>
-		    <style type="text/css">
-		        body {
-		            font-family: Arial, Verdana, Helvetica, sans-serif;
-		            font-size: 16px;
-		        }
-		    </style>
-		</head>
-		<body>
-		' . $message . '
-		</body>
-		</html>';
-		// Also, for getting full html you may use the following internal method:
-		//$body = $this->email->full_html($subject, $message);
+		foreach ($email as $key => $e) {
+			$subject = 'This is a test ' .date('D, d M Y H:i:s');
+			$message = '<p>This message has been sent for testing purposes.</p>';
 
-		$result = $this->email
-		        ->from('proyekkominfo.1@gmail.com')
-		        /*->reply_to('yoursecondemail@somedomain.com')*/    // Optional, an account where a human being reads.
-		        ->to('ayucandrawatii@gmail.com')
-		        ->subject($subject)
-		        ->message($body)
-		        ->attach(base_url('uploads/laporan.pdf'))
-		        ->send();
+			// Get full html:
+			$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+			<html xmlns="http://www.w3.org/1999/xhtml">
+			<head>
+			    <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
+			    <title>' . html_escape($subject) . '</title>
+			    <style type="text/css">
+			        body {
+			            font-family: Arial, Verdana, Helvetica, sans-serif;
+			            font-size: 16px;
+			        }
+			    </style>
+			</head>
+			<body>
+			' . $message . '
+			</body>
+			</html>';
+			// Also, for getting full html you may use the following internal method:
+			//$body = $this->email->full_html($subject, $message);
 
-		var_dump($result);
-		echo '<br />';
-		echo $this->email->print_debugger();
+			$result = $this->email
+			        ->from('proyekkominfo.1@gmail.com')
+			        /*->reply_to('yoursecondemail@somedomain.com')*/    // Optional, an account where a human being reads.
+			        ->to($e->namaEmail)
+			        ->subject($subject)
+			        ->message($body)
+			        ->attach(base_url('uploads/laporan.pdf'))
+			        ->send();
+
+			var_dump($result);
+			echo '<br />';
+			echo $this->email->print_debugger();
+		}
+
+		
 		
 		redirect(base_url('adminPengaduan/pengaduan'));
 

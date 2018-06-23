@@ -104,7 +104,7 @@
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('loginAdmin/index') ?>">
+          <a href="<?php echo base_url('Welcome') ?>">
             <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>

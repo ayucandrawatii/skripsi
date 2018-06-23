@@ -93,14 +93,14 @@
             <label class="control-label" style="color:black; font-family:calibri ;">Comment:</label>
           </div>
           <div class="col-sm-12">
-            <textarea class="form-control" name="comment" rows="10" cols"30" placeholder="Enter comment" required></textarea></br>
+            <textarea class="form-control" name="comment" rows="10" cols"30" placeholder="Enter comment"></textarea></br>
           </div>
 
           <div class="col-sm-12">
             <label class="control-label" style="color:black; font-family:calibri ;">Nomor Surat:</label>
           </div>
           <div class="col-sm-12">
-            <input type="text" class="form-control" name="nomorSurat" placeholder="Enter nomor surat" required>
+            <input type="text" class="form-control" name="nomorSurat" placeholder="Enter nomor surat">
           </div> 
         </div>
         

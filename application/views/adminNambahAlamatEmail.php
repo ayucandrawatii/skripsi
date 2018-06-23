@@ -103,7 +103,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        List Instansi
+        List User
         
       </h1>      
     </section>
@@ -116,7 +116,7 @@
         <div class="box-header with-border">
           </br>
           <div class="">
-            <a href="<?php echo base_url('adminNambahInstansi/add/') ?>" type="button" class="btn btn-primary">Tambah Instansi</a>
+            <a href="<?php echo base_url('adminNambahAlamatEmail/add/') ?>" type="button" class="btn btn-primary">Tambah Alamat Email</a>
           </div>
           </br>
           <!-- /.box-header -->
@@ -125,18 +125,18 @@
                 
                 <tr>
                   <th style="width: 10px">NO</th>
-                  <th style="width: 500px">Nama Instansi</th>
+                  <th style="width: 500px">Alamat Email</th>
                   <th>Action</th>
                 </tr>
-                <?php foreach ($instansi as $key => $post): ?>
+                <?php foreach ($user as $key => $post): ?>
                 <tr>
                   <td><?php echo $key+1;?></td>
-                  <td><?php echo $post->nama;?></td>                 
+                  <td><?php echo $post->namaEmail;?></td>                 
                   <td>
                     <div class="btn-group" style="align:center";>
                       <div>
-                        <a href="<?php echo base_url('AdminNambahInstansi/edit/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
-                        <a href="#" type="button" class="btn btn-danger" onclick="deleteInstansi(<?php echo $post->id; ?>)">Hapus</a>
+                        <a href="<?php echo base_url('AdminNambahAlamatEmail/edit/').$post->id ?>" type="button" class="btn btn-success">Edit</a>
+                        <a href="#" type="button" class="btn btn-danger" onclick="deleteAlamatEmail(<?php echo $post->id; ?>)">Hapus</a>
                       </div>
                     </div>
                   </td>
@@ -145,6 +145,16 @@
                 
               </table>
             </div>
+            <!-- /.box-body -->
+            <!-- <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div> -->
           </div>         
         </div>
         </div>
@@ -154,8 +164,16 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
+
 
 </body>
 <!-- Modal -->
@@ -167,7 +185,7 @@
                       <h4 class="modal-title" id="myModalLabel">Warning</h4>
                     </div>
                     <div id="hasilView" class="modal-body">
-                      Apakah anda yakin akan menghapus instansi?
+                      Apakah anda yakin akan menghapus alamat email?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" id="btn-hapus">Ya</button>
@@ -177,7 +195,6 @@
                 </div>
               </div>
 </html>
-
 <!-- jQuery 3 -->
 <script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -197,10 +214,10 @@
 
 
 <script>
-function deleteInstansi(id) {
+function deleteAlamatEmail(id) {
     $('#hapus').modal();
     $('#btn-hapus').click(function(event){
-      window.location.href = "<?php echo base_url() ?>AdminNambahInstansi/delete/"+id;
+      window.location.href = "<?php echo base_url() ?>AdminNambahAlamatEmail/delete/"+id;
     });
 }
-</script>  
+</script>

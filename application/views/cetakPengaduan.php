@@ -30,7 +30,8 @@
 
  $this->fpdf->Cell(1,0.6,'NO',1,'C','C');
  $this->fpdf->Cell(10,0.6,'INSTANSI',1,'C','C'); 
- $this->fpdf->Cell(4,0.6,'KATEGORI',1,'C','C'); 
+ $this->fpdf->Cell(4,0.6,'KATEGORI',1,'C','C');
+ $this->fpdf->Cell(4,0.6,'KERUSAKAN',1,'C','C'); 
  $this->fpdf->Cell(4,0.6,'STATUS',1,'C','C');
  $this->fpdf->Cell(4,0.6,'NOMOR SURAT',1,'C','C');
   $this->fpdf->Ln();  
@@ -41,6 +42,7 @@
       $this->fpdf->Cell(1,0.6,$key+1,1,'C','C');
       $this->fpdf->Cell(10,0.6,$row->instansi,1);
       $this->fpdf->Cell(4,0.6,$row->kategori,1);
+      $this->fpdf->Cell(4,0.6,$row->kerusakan,1);
       $this->fpdf->Cell(4,0.6,$row->status,1);
       $this->fpdf->Cell(4,0.6,$row->nomorSurat,1);
       $this->fpdf->Ln();

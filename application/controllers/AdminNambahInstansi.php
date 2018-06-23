@@ -6,7 +6,7 @@ class AdminNambahInstansi extends CI_Controller {
 	
 	public function index()
 	{
-		if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
+		// if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
 		$get_posting = $this->db->get('instansi');
 			$data['instansi'] = $get_posting->result();
 

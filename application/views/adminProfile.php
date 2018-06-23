@@ -79,7 +79,7 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $this->session->userdata('nama') ?></p>
+          <p><?php echo $this->session->userdata('username') ?></p>
           <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
@@ -108,7 +108,7 @@
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('AdminPengaduan/signOut') ?>">
+          <a href="<?php echo base_url('Welcome') ?>">
             <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>

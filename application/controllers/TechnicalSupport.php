@@ -238,7 +238,7 @@ class TechnicalSupport extends CI_Controller {
 	}
 
 	public function solusi($idPengaduan){
-		
+		$start = microtime(TRUE);
 		$comment=$this->ModelTechnicalSupport->select_comment($idPengaduan); //mencari komen
 		$idKerusakan=$this->ModelTechnicalSupport->select_idKerusakan($idPengaduan);
 		$namakerusakan=$this->ModelTechnicalSupport->select_namaKerusakan($idKerusakan);
@@ -254,7 +254,7 @@ class TechnicalSupport extends CI_Controller {
 			$tf = array_values(array_count_values($stopword)); // jml TF perkata
 			//$doubleTermRemove = menghilangkan kata double
 			$doubleTermRemove = array_values(array_unique($stopword)); // menghilangkan kata double yang sama. aku aku makan menjadi aku makan
-			$jumlahDoubleTermRemove = count($doubleTermRemove); // menghitung jumlah kata yang tidak double
+			$jumlahDoubleTermRemove = count($doubleTermRemove); // menghitung jumlah kata yang tidak double (stemming)
 
 			$i = 0;
 			while ($i<$jumlahDoubleTermRemove) {
@@ -271,8 +271,7 @@ class TechnicalSupport extends CI_Controller {
 				$i++;
 			}
 
-			$x=0;
-			//$x2=0;
+			$x=0;			
 			$bobotKuadratQuery=0;
 
 
@@ -281,7 +280,7 @@ class TechnicalSupport extends CI_Controller {
 				$tf= $this->ModelTechnicalSupport->select_tf($term[$x]); // cari tf
 
 				if ($tf==0) { // kalo kata yang dicari tidak ada disemua dokumen
-					$x++; // maka kata tsb diabaikan (tidak dihitung)
+						$x++; // maka kata tsb diabaikan (tidak dihitung)
 				}else{
 					$idf=log10(($df+1)/($tf+1)); // hitung idf, $df+1 = jumlah dokumen + query, $tf+1 =jumlah kata x di semua dokumen + query
 					$bobotQ[$term[$x]]=$tf*$idf; // perhitungan bobot pada setiap term
@@ -294,14 +293,14 @@ class TechnicalSupport extends CI_Controller {
 
 					$termTerseleksi[$x]=$term[$x]; //$termTerseleksi = menyimpan term yang tidak nol
 					$x++;
-					//$x2++;
+					
 					
 				}
 			
 			}
 
-			//mencari id dokumen
-			$id=$this->ModelTechnicalSupport->select_id(); // mencari id
+			//mencari solusi kerusakan
+			$id=$this->ModelTechnicalSupport->select_id(); // mencari id solusi
 			$y=0;
 			
 			
@@ -313,11 +312,11 @@ class TechnicalSupport extends CI_Controller {
 				$bobotKuadrat=0;
 				$bobotKuadratSolusi=0;
 				$atas=0;
-				//$QuerykaliTerm=1;
+				
 				
 				foreach ($term->result() as $term) {
 					
-					if (in_array($term->term, $termTerseleksi)) { //menghitung pembilang, kata x yang ada query dan dokumen
+					if (in_array($term->term, $termTerseleksi)) { //menghitung pembilang, kata x yang ada 	dokumen
 						 //$termTerseleksiSolusi[$z]=$term->term;
 						$df= $this->ModelTechnicalSupport->select_df();
 						$tf= $this->ModelTechnicalSupport->select_tf($term->term);
@@ -363,11 +362,12 @@ class TechnicalSupport extends CI_Controller {
 				$max =max($hasil); //cari hasil cosine tertinggi
 				$key = array_keys($hasil, $max);
 				$keys =$key[0];
-			}
+				}
 							
 			}
 
-
+		 $finish = microtime(TRUE);
+		 
 			
 		//$data['nm']=$query;
 		// 	$data['query']=$bobotQuery;
@@ -380,15 +380,16 @@ class TechnicalSupport extends CI_Controller {
 		// 	// $data['tf']=$tf;
 
 		//$this->load->view('contoh',$data);
-			$this->selectSolusi($keys);
+			$this->selectSolusi($keys,$start,$finish);
 	}
 
-	public function selectSolusi($keys)
+	public function selectSolusi($keys,$start,$finish)
 	{
 		$this->db->select('*');
 		$this->db->where('idSolusi', $keys);
 		$this->db->from('tabelsolusi');
 		$data['listSolusi'] = $this->db->get()->result();
+		$data['waktu']=$finish-$start;
 		
 		$this->load->view('technicalSupportViewSolusi',$data);
 	}

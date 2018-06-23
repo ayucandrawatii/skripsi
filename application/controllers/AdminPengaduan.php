@@ -16,9 +16,9 @@ class AdminPengaduan extends CI_Controller {
 
 	public function pengaduan()
 	{
-		if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
+		//if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
 		$search = $data['search'] = $this->input->get('search');
-		if ($this->input->post()) {
+		if ($this->input->get()) {
 			$tahun = $this->input->get('tahun');
 			$bulan = $this->input->get('bulan');
 		} else {
@@ -77,9 +77,10 @@ class AdminPengaduan extends CI_Controller {
 
 	public function cetak($bulan, $tahun)
 	{
-		$this->db->select('p.*, i.nama as instansi, k.nama as kategori')->from('tabelPengaduan p')
+		$this->db->select('p.*, i.nama as instansi, k.nama as kategori, r.namaKerusakan as kerusakan')->from('tabelPengaduan p')
 			->join('instansi i', 'i.id = p.idInstansi')
-			->join('kategori k', 'k.id = p.idKategori');
+			->join('kategori k', 'k.id = p.idKategori')
+			->join('kerusakan r', 'r.id = p.idKerusakan');
 			$this->db->where('year(timestamp)', $tahun);
 			$this->db->where('month(timestamp)', $bulan);
 			$get_posting = $this->db->get();
@@ -93,7 +94,7 @@ class AdminPengaduan extends CI_Controller {
 
 	public function profile()
 	{
-		if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
+		// if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
 		$this->load->view('adminProfile');
 	}
 

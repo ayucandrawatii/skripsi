@@ -9,9 +9,10 @@ class cetakPengaduan extends CI_Controller {
 		define('FPDF_FONTPATH', $this->config->item('fonts_path'));
 
 		$this->db->where('p.id',$id);
-		$cetak = $this->db->select('p.*, i.nama as instansi, k.nama as kategori')->from('tabelPengaduan p')
+		$cetak = $this->db->select('p.*, i.nama as instansi, k.nama as kategori, r.namaKerusakan as kerusakan')->from('tabelPengaduan p')
 			->join('instansi i', 'i.id = p.idInstansi')
 			->join('kategori k', 'k.id = p.idKategori')
+			->join('kerusakan r', 'r.id = p.idKerusakan')
 			->get();
 			$data['tabelpengaduan'] = $cetak->row();
 
