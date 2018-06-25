@@ -136,7 +136,7 @@
           
           <div class="row">
             <div class="col-md-4">
-              <!-- <a href="<?php echo base_url('adminPengaduan/add/') ?>" type="button" class="btn btn-primary">Tambah Pengaduan</a> -->
+              
             </div>
             
             <div class="col-md-6">

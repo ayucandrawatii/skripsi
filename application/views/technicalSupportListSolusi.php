@@ -158,10 +158,10 @@
                 
                 <tr>
                   <th style="width: 10px">NO</th>
-                  <th style="width: 200px">Gejala</th>
-                  <th style="width: 200px">Kemungkinan Penyebab</th>
-                  <th style="width: 500px">Solusi</th>
-                  <th style="width: 200px">Action</th>
+                  <th>Gejala</th>
+                  <th>Kemungkinan Penyebab</th>
+                  <th>Solusi</th>
+                  <th style="width: 400px">Action</th>
                 </tr>
                 <?php foreach ($listSolusi as $key => $post): ?>
                 <tr>

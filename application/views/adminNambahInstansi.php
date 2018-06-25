@@ -82,6 +82,11 @@
           </a>          
         </li>
         <li>
+          <a href="<?php echo base_url('adminNambahAlamatEmail/') ?>">
+            <i class="fa fa-university"></i> <span>Daftar Alamat Email</span>       
+          </a>          
+        </li>
+        <li>
           <a href="<?php echo base_url('adminPengaduan/profile') ?>">
             <i class="fa fa-user-circle"></i> <span>Profile</span>       
           </a>          

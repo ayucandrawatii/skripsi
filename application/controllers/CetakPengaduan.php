@@ -1,71 +1,130 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class cetakPengaduan extends CI_Controller {
-
-	public function index($id)
-	{
 		$this->load->library('fpdf');
-		define('FPDF_FONTPATH', $this->config->item('fonts_path'));
+   $this->fpdf->FPDF("L","cm","A4");
+   // kita set marginnya dimulai dari kiri, atas, kanan. jika tidak diset, defaultnya 1 cm
+   $this->fpdf->SetMargins(2,1,1);
+   /* AliasNbPages() merupakan fungsi untuk menampilkan total halaman
+   di footer, nanti kita akan membuat page number dengan format : number page / total page
+   */
+   $this->fpdf->AliasNbPages();
+   // AddPage merupakan fungsi untuk membuat halaman baru
+  $this->fpdf->AddPage();
+  // Setting Font : String Family, String Style, Font size
+  $this->fpdf->SetFont('Times','B',12);
+  $this->fpdf->Ln();
+ $this->fpdf->Cell(27,0.7,'PEMERITAH KOTA DENPASAR',0,'C','C');
+ $this->fpdf->Ln();
+ $this->fpdf->Cell(27,0.7,'DINAS KOMUNIKASI, INFORMATIKA DAN STATISTIK',0,'C','C');
+ $this->fpdf->Ln();
+ $this->fpdf->SetFont('Times','B',10);
+ $this->fpdf->Cell(27,0.7,'Jalan Majapahit No. 1 Denpasar, Tlp (0361) 431229 Fax No : (0361) 895716',0,'C','C');
+ $this->fpdf->Ln();
+ $this->fpdf->Cell(27,0.7,'web site:www.denpasarkota.g.id         e-mail: kominfo@denpasarkota.go.id',0,'C','C');
+ $this->fpdf->Line(5,4,25,4);
+ $this->fpdf->Image('assets/img/logoDenpasar.png',6.5,1.2,-1100);
+ $this->fpdf->Ln();
+ $this->fpdf->Ln();
 
-		$this->db->where('p.id',$id);
-		$cetak = $this->db->select('p.*, i.nama as instansi, k.nama as kategori, r.namaKerusakan as kerusakan')->from('tabelPengaduan p')
-			->join('instansi i', 'i.id = p.idInstansi')
-			->join('kategori k', 'k.id = p.idKategori')
-			->join('kerusakan r', 'r.id = p.idKerusakan')
-			->get();
-			$data['tabelpengaduan'] = $cetak->row();
+ // Header
+  $start_awal=$this->fpdf->GetX(); 
+  $get_xxx = $this->fpdf->GetX();
+  $get_yyy = $this->fpdf->GetY();
+
+  $width_cell = 4;  
+  $height_cell = 0.6;  
+
+  $this->fpdf->SetFont('Times','B',10);
+
+  $this->fpdf->MultiCell(1,$height_cell,'NO',1,'C'); 
+  $get_xxx+=1;                           
+  $this->fpdf->SetXY($get_xxx, $get_yyy);   
+
+  $this->fpdf->MultiCell(6,$height_cell,'INSTANSI',1,'C'); 
+  $get_xxx+=6;                           
+  $this->fpdf->SetXY($get_xxx, $get_yyy);  
+
+  $this->fpdf->MultiCell(3,$height_cell,'KATEGORI',1,'C'); 
+  $get_xxx+=3;                           
+  $this->fpdf->SetXY($get_xxx, $get_yyy);
+
+  $this->fpdf->MultiCell(9,$height_cell,'KERUSAKAN',1,'C'); 
+  $get_xxx+=9;                           
+  $this->fpdf->SetXY($get_xxx, $get_yyy);
+
+  $this->fpdf->MultiCell(4,$height_cell,'STATUS',1,'C'); 
+  $get_xxx+=4;                           
+  $this->fpdf->SetXY($get_xxx, $get_yyy);
+
+  $this->fpdf->MultiCell(3,$height_cell,'NO SURAT',1,'C'); 
+  $get_xxx+=3;                           
+  $this->fpdf->SetXY($get_xxx, $get_yyy);
+  // Data
+  $bulan= $this->uri->segment('3');
+
+    $query1 = $this->db->query("SELECT * FROM tabelpengaduan WHERE idKategori='1' AND YEAR(timestamp)='2018' AND MONTH(timestamp)='$bulan'");
+    $hardware = $query1->num_rows();
 
 
-		$this->load->view('cetakPengaduan', $data);
-		
-	}
+    $query2 = $this->db->query("SELECT * FROM tabelpengaduan WHERE idKategori='2' AND YEAR(timestamp)='2018' AND MONTH(timestamp)='$bulan'");
+    $software = $query2->num_rows();
 
-	//belum
-	public function send()
-	{
-		$this->load->library('email');
 
-		$subject = 'This is a test';
-		$message = '<p>This message has been sent for testing purposes.</p>';
+    $query3 = $this->db->query("SELECT * FROM tabelpengaduan WHERE idKategori='3' AND YEAR(timestamp)='2018' AND MONTH(timestamp)='$bulan'");
+    $jaringan = $query3->num_rows();
 
-		// Get full html:
-		$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-		<html xmlns="http://www.w3.org/1999/xhtml">
-		<head>
-		    <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
-		    <title>' . html_escape($subject) . '</title>
-		    <style type="text/css">
-		        body {
-		            font-family: Arial, Verdana, Helvetica, sans-serif;
-		            font-size: 16px;
-		        }
-		    </style>
-		</head>
-		<body>
-		' . $message . '
-		</body>
-		</html>';
-		// Also, for getting full html you may use the following internal method:
-		//$body = $this->email->full_html($subject, $message);
 
-		$result = $this->email
-		        ->from('proyekkominfo.1@gmail.com')
-		        /*->reply_to('yoursecondemail@somedomain.com')*/    // Optional, an account where a human being reads.
-		        ->to('ayucandrawatii@gmail.com')
-		        ->subject($subject)
-		        ->message($body)
-		        ->attach(base_url('uploads/laporan.pdf'))
-		        ->send();
+  $this->fpdf->SetFont('Times','',10);
+  foreach($posting as $key => $row)
+  {
+      $get_xxx=$start_awal;                      
+      $get_yyy+=$height_cell;
+      $get_xxx=$start_awal;                      
+      $get_yyy+=$height_cell;                  
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
+      $this->fpdf->MultiCell(1,$height_cell,$key+1,1,'C');
+      $get_xxx+=1;
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
+      
+      $this->fpdf->MultiCell(6,$height_cell,$row->instansi,1);
+      $get_xxx+=6;
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
+      
+      $this->fpdf->MultiCell(3,$height_cell,$row->kategori,1);
+      $get_xxx+=3;
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
+      
+      $this->fpdf->MultiCell(9,$height_cell,$row->kerusakan,1);
+      $get_xxx+=9;
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
 
-		var_dump($result);
-		echo '<br />';
-		echo $this->email->print_debugger();
-		
-		redirect(base_url('adminPengaduan/pengaduan'));
+      $this->fpdf->MultiCell(4,$height_cell,$row->status,1);
+      $get_xxx+=4;
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
 
-		exit;
+      $this->fpdf->MultiCell(3,$height_cell,$row->nomorSurat,1);
+      $get_xxx+=3;
+      $this->fpdf->SetXY($get_xxx, $get_yyy);
+      $this->fpdf->Ln();
+  }
+  $this->fpdf->Ln();
+  $this->fpdf->Cell(5,0.6,'KATEGORI KERUSAKAN',1,'C'); 
+  $this->fpdf->Ln();
+  $this->fpdf->Cell(4,0.6,'HARDWARE',1,'C'); 
+  $this->fpdf->Cell(1,0.6,$hardware,1,'C'); 
+  $this->fpdf->Ln();
+  $this->fpdf->Cell(4,0.6,'SOFTWARE',1,'C'); 
+  $this->fpdf->Cell(1,0.6,$software,1,'C'); 
+  $this->fpdf->Ln();
+  $this->fpdf->Cell(4,0.6,'JARINGAN',1,'C'); 
+  $this->fpdf->Cell(1,0.6,$jaringan,1,'C'); 
+  $this->fpdf->Ln();
 
-	}	
-}
+
+
+
+
+
+
+ $this->fpdf->Output();
+ // Insert a logo in the top-left corner at 300 dpi
 

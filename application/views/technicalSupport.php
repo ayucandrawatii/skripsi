@@ -141,7 +141,7 @@
             </div>
           <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered">
+              <table class="table table-hover">
                 
                 <tr>
                   <th style="width: 10px">NO</th>
