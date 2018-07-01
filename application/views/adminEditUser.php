@@ -30,7 +30,7 @@
 
   <style type="text/css">
     body {
-      background-color: #fff;
+      background-color: #ebeff4;
       margin: 40px;
     }
   </style>
@@ -41,6 +41,7 @@
   <div class="container"  style="width:700px;">
     <!-- Horizontal Form -->
     <div class="box box-info">
+    <div class="box-body">
       <div class="box-header with-border">
         <h1 class="box-title">Edit User</h1>
       </div>
@@ -73,13 +74,14 @@
                 </div>             
 
                 
-                  <div class="box-footer">
+                  <div class="box-footer" style="text-align: right">
                     <!-- <a href="<?php echo base_url('AdminNambahUser').$user->id_user ?>" type="button" class="btn btn-default">Cancel</a> -->
                     <a href="<?php echo base_url('AdminNambahUser')?>" type="button" class="btn btn-default">Cancel</a>
                     <input type="submit" value="submit" name="submit" class="btn btn-info">
                   </div>
                 
       </form>
+    </div>
 
     </div>
   </div>

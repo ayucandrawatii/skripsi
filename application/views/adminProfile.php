@@ -76,12 +76,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-          <!-- <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image"> -->
+          <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <!-- <p><?php echo $this->session->userdata('username') ?></p>
-          <small><?php echo $this->session->userdata('email') ?></small></br> -->
+          <p><?php echo $this->session->userdata('username') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
       

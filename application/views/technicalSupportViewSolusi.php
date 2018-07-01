@@ -1,4 +1,8 @@
-<?php foreach ($listSolusi as $key => $post): ?>
+<?php
+if ($nodata=='tidak') {
+  # code...
+
+ foreach ($listSolusi as $key => $post): ?>
         
           <!-- <label><?php print_r($hasil);?></label></br> -->
 
@@ -16,4 +20,8 @@
             </div>
           </td>
         
-      <?php endforeach ?>
+      <?php endforeach; }
+
+      else{
+        echo "<label >Data Tidak Ditemukan Cihh !!!</label>";
+      } ?>

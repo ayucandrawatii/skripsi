@@ -242,7 +242,7 @@ class TechnicalSupport extends CI_Controller {
 		$comment=$this->ModelTechnicalSupport->select_comment($idPengaduan); //mencari komen
 		$idKerusakan=$this->ModelTechnicalSupport->select_idKerusakan($idPengaduan);
 		$namakerusakan=$this->ModelTechnicalSupport->select_namaKerusakan($idKerusakan);
-		$query=$comment.' '.$namakerusakan;
+		$query=$comment.' '.$namakerusakan; //query dari user yg ngadu
 
 
 			$namakerusakan = preg_replace("/[[:punct:]]+/", " ",  $query);// menghilangkan tanda baca
@@ -251,9 +251,9 @@ class TechnicalSupport extends CI_Controller {
 			$fileStopword = base_url().'assets/preprocessing/stopword.txt'; // variabel nampung alamat stopword.txt
 			$stopwords = file($fileStopword, FILE_IGNORE_NEW_LINES); // buka file stopword.txt
 			$stopword = array_values(array_diff($namakerusakan, $stopwords)); // membandingan antara query dgn stopword.txt
-			$tf = array_values(array_count_values($stopword)); // jml TF perkata
+			$tf = array_values(array_count_values($stopword)); // jml TF tiap kata
 			//$doubleTermRemove = menghilangkan kata double
-			$doubleTermRemove = array_values(array_unique($stopword)); // menghilangkan kata double yang sama. aku aku makan menjadi aku makan
+			$doubleTermRemove = array_values(array_unique($stopword)); // menghilangkan kata double yang sama. aku aku menjadi aku
 			$jumlahDoubleTermRemove = count($doubleTermRemove); // menghitung jumlah kata yang tidak double (stemming)
 
 			$i = 0;
@@ -273,6 +273,8 @@ class TechnicalSupport extends CI_Controller {
 
 			$x=0;			
 			$bobotKuadratQuery=0;
+			$termTerseleksi[0]='xasx';
+
 
 
 			while ( $x< $jumlahDoubleTermRemove) {
@@ -316,15 +318,15 @@ class TechnicalSupport extends CI_Controller {
 				
 				foreach ($term->result() as $term) {
 					
-					if (in_array($term->term, $termTerseleksi)) { //menghitung pembilang, kata x yang ada 	dokumen
+					if (in_array($term->term, $termTerseleksi)) { //menghitung pembilang, (kata x yang ada query * kata x yang ada dokumen1)
 						 //$termTerseleksiSolusi[$z]=$term->term;
 						$df= $this->ModelTechnicalSupport->select_df();
 						$tf= $this->ModelTechnicalSupport->select_tf($term->term);
 						$idfSolusi=log10(($df+1)/($tf+1));
 						$bobot=$term->tf* $idfSolusi;
 						
-						$bobotKuadrat=$bobotKuadrat + pow($bobot, 2); //bobot pembilang
-						$atas= $atas+ $bobot* $bobotQ[$term->term];
+						$bobotKuadrat=$bobotKuadrat + pow($bobot, 2); //bobot pembilang yg telah dikuadrat
+						$atas= $atas+ $bobot* $bobotQ[$term->term]; // hasil perhitungan bagian pembilang pd rumus cosin
 						$z++;
 					}
 					else{
@@ -344,7 +346,7 @@ class TechnicalSupport extends CI_Controller {
 				}
 
 			if ($z==0) { //perhitungan jika semua kata tidak ada yg sama di query dan dokumen
-				$y++;
+				$y++; // lanjut ke dokumen solusi selanjutnya
 			} else{
 
 				//penyebutSolusi
@@ -379,18 +381,27 @@ class TechnicalSupport extends CI_Controller {
 		// 	$data['max']=$keys;
 		// 	// $data['tf']=$tf;
 
+		 if ($termTerseleksi[0]=='xasx') {
+		 	$keys='no data';
+		 }
+
 		//$this->load->view('contoh',$data);
 			$this->selectSolusi($keys,$start,$finish);
 	}
 
 	public function selectSolusi($keys,$start,$finish)
 	{
+		if ($keys=='no data') {
+			$data['nodata']='ya';
+		}else{
 		$this->db->select('*');
 		$this->db->where('idSolusi', $keys);
 		$this->db->from('tabelsolusi');
 		$data['listSolusi'] = $this->db->get()->result();
 		$data['waktu']=$finish-$start;
-		
+		$data['nodata']='tidak';
+		}
+
 		$this->load->view('technicalSupportViewSolusi',$data);
 	}
 

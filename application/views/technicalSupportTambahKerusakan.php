@@ -30,7 +30,7 @@
 
   <style type="text/css">
     body {
-      background-color: #fff;
+      background-color: #ebeff4;
       margin: 40px;
     }
   </style>
@@ -41,6 +41,7 @@
   <div class="container"  style="width:700px;">
     <!-- Horizontal Form -->
     <div class="box box-info">
+      <div class="box-body">
       <div class="box-header with-border">
         <h1 class="box-title">Tambah Kerusakan</h1>
       </div>
@@ -69,11 +70,12 @@
           </div>
         </div>
         
-          <div class="box-footer">
+          <div style="text-align: right" class="box-footer">
             <a href="<?php echo base_url('TechnicalSupport/daftarKerusakan') ?>" type="button" class="btn btn-default">Cancel</a>
             <input type="submit" value="submit" name="submitTambahKerusakan" class="btn btn-info">
           </div>        
       </form>   
+    </div>
     </div>
   </div>
 

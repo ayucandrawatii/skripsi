@@ -30,7 +30,7 @@
 
   <style type="text/css">
     body {
-      background-color: #fff;
+      background-color: #ebeff4;
       margin: 40px;
     }
   </style>
@@ -41,6 +41,7 @@
   <div class="container"  style="width:700px;">
     <!-- Horizontal Form -->
     <div class="box box-info">
+      <div class="box-body">
       <div class="box-header with-border">
         <h1 class="box-title">Edit Form</h1>
       </div>
@@ -134,14 +135,14 @@
           </div>
         </div>
 
-        <div class="form-group"> 
-          <div class="box-footer">
+        <div class="form-group" style="text-align: right"> 
+          <div class="col-sm-12">
             <button type="submit" class="btn btn-default">Cancel</button>
             <button name="submit" type="submit" class="btn btn-info">Edit</button>
           </div>
         </div>
-              </form>
-
+      </form>
+      </div>
       
     </div>
   </div>

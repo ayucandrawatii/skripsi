@@ -74,11 +74,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url()?>assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Technical Support</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+           <p><?php echo $this->session->userdata('username') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
       

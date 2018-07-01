@@ -8,9 +8,9 @@ class KepalaDinas extends CI_Controller {
 	{
 		// if (!$this->session->userdata('isLoggedIn')) redirect('LoginAdmin');
 		$search = $data['search'] = $this->input->post('search');
-		if ($this->input->post()) {
-			$tahun = $this->input->post('tahun');
-			$bulan = $this->input->post('bulan');
+		if ($this->input->get()) {
+			$tahun = $this->input->get('tahun');
+			$bulan = $this->input->get('bulan');
 		} else {
 			$tahun = 0;
 			$bulan = 0;
@@ -98,10 +98,10 @@ class KepalaDinas extends CI_Controller {
 				        'foto'  => "uploads/".$data['file_name']
 						);
 
-						$this->db->update('tbadmin', $data);
+						$this->db->update('tb_kepala_dinas', $data);
                 }
         $this->load->library('session');
         $this->session->set_userdata($data);       
-        redirect('adminPengaduan/profile');
+        redirect('KepalaDinas/profile');
 	}
 }

@@ -29,6 +29,7 @@ class AdminEdit extends CI_Controller {
 			$data=$this->input->post();
 			$this->db->set('idKategori', $this->input->post('idKategori'));
 			$this->db->set('idInstansi', $this->input->post('idInstansi'));
+			$this->db->set('idKerusakan', $this->input->post('idKerusakan'));
 			$this->db->set('comment', $this->input->post('comment'));
 			$this->db->set('status', $this->input->post('status'));
 			$this->db->set('nomorSurat', $this->input->post('nomorSurat'));

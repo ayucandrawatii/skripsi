@@ -38,9 +38,11 @@ class Welcome extends CI_Controller {
 
 			if($j_cek1 == 1) {
 			$data = array(
-				'username' => $d_cek->username,
-				'password' => $d_cek->password,
+				'username' => $d_cek1->username,
+				'password' => $d_cek1->password,
 				'id' => $d_cek1->id_user,
+				'foto' => $d_cek1->foto,
+				'email' => $d_cek1->email,
 				'user_valid' => true
 				);
 			$this->session->set_userdata($data);
@@ -49,9 +51,11 @@ class Welcome extends CI_Controller {
 				
 			else if($j_cek2 == 1) {
 			$data = array(
-				'username' => $d_cek->username,
-				'password' => $d_cek->password,
+				'username' => $d_cek2->username,
+				'password' => $d_cek2->password,
 				'id' => $d_cek2->id,
+				'foto' => $d_cek2->foto,
+				'email' => $d_cek2->email,
 				'user_valid' => true
 				);
 			$this->session->set_userdata($data);
@@ -60,8 +64,10 @@ class Welcome extends CI_Controller {
 
 			else if($j_cek3 == 1) {
 			$data = array(
-				'username' => $d_cek->username,
-				'password' => $d_cek->password,
+				'username' => $d_cek3->username,
+				'password' => $d_cek3->password,
+				'foto' => $d_cek3->foto,
+				'email' => $d_cek3->email,
 				'id' => $d_cek3->id,
 				'user_valid' => true
 				);
@@ -71,8 +77,10 @@ class Welcome extends CI_Controller {
 						
 			else if($j_cek4 == 1) {
 			$data = array(
-				'username' => $d_cek->username,
-				'password' => $d_cek->password,
+				'username' => $d_cek4->username,
+				'password' => $d_cek4->password,
+				'email' => $d_cek4->email,
+				'foto' => $d_cek4->foto,
 				'id' => $d_cek4->id,
 				'user_valid' => true
 				);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Pengaduan</title>
+  <title>Kepala Dinas</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -78,8 +78,9 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Kepala Dinas</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><?php echo $this->session->userdata('username') ?></p>
+          <small><?php echo $this->session->userdata('email') ?></small></br>
+         
         </div>
       </div>
       
@@ -97,7 +98,7 @@
           </a>          
         </li>
         <li>
-          <a href="<?php echo base_url('loginAdmin/index') ?>">
+          <a href="<?php echo base_url('Welcome') ?>">
             <i class="fa fa-sign-out"></i> <span>Sign Out</span>       
           </a>          
         </li>
@@ -129,7 +130,7 @@
             <div class="box-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Nama</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ketik nama" name="nama">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>

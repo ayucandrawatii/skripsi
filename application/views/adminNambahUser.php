@@ -58,7 +58,7 @@
           <img src="<?php echo base_url().$this->session->userdata('foto')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $this->session->userdata('nama') ?></p>
+          <p><?php echo $this->session->userdata('username') ?></p>
           <small><?php echo $this->session->userdata('email') ?></small></br>
         </div>
       </div>
